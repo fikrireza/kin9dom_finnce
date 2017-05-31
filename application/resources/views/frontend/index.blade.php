@@ -163,14 +163,21 @@ Home
 			display: block;
 		}
 
-		.event-content > div > .event-hover > div > .event-line
+		.event-content > div > .event-hover > .event-line:before,
+        .event-content > div > .event-hover > .event-line:after
 		{
-			width: 0px;
+            content: '';
+            display: inline-block;
+            border-bottom: 2px solid white;
+            width: 0px;
+            position: relative;
+            top: -8px;
 			-webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
     		transition: width 2s;
 		}
 
-		.event-content > div:hover > .event-hover > div > .event-line
+		.event-content > div:hover > .event-hover > .event-line:before,
+        .event-content > div:hover > .event-hover > .event-line:after
 		{
 			width: 105px;
 		}
@@ -281,55 +288,43 @@ Home
         <!-- dynamic data -->
         <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-1.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
+                <div class="event-line">
                     Surabaya
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
                 </div>
             </div>
         </div>
         <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-2.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
+                <div class="event-line">
                     Jakarta
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
                 </div>
             </div>
         </div>
         <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-3.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
+                <div class="event-line">
                     Bandung
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
                 </div>
             </div>
         </div>
         <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-4.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
+                <div class="event-line">
                     Semarang
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
                 </div>
             </div>
         </div>
         <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-5.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
+                <div class="event-line">
                     Yogyakarta
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
                 </div>
             </div>
         </div>
         <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-6.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
+                <div class="event-line">
                     Denpasar
-                    <img class="event-line" src="{!! asset('amadeo/img/line.png') !!}"/>
                 </div>
             </div>
         </div>

@@ -5,6 +5,12 @@
 
 @font-face {
     font-family: 'Helvetica LT Std';
+    src: url('HelveticaLTStd-Light.otf');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Helvetica LT Std';
     src: url('HelveticaLTStd-Bold.otf');
     font-weight: bold;
 }
@@ -12,5 +18,5 @@
 @font-face {
     font-family: 'Helvetica LT Std';
     src: url('HelveticaLTStd-Blk.otf');
-    font-weight: 100;
+    font-weight: 900;
 }

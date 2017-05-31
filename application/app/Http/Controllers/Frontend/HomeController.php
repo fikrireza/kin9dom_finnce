@@ -21,6 +21,7 @@ class HomeController extends Controller
     {
     	return view('frontend.event');
     }
+    
     public function eventDetail($slug)
     {
     	return view('frontend.event.index');
@@ -30,8 +31,24 @@ class HomeController extends Controller
     {
         return view('frontend.gallery');
     }
+
     public function galleryDetail($slug)
     {
         return view('frontend.gallery.index');
+    }
+
+    public function article()
+    {
+        return view('frontend.article');
+    }
+
+    public function articleCategory($category)
+    {
+        return view('frontend.article.category');
+    }
+
+    public function articleDetail($category, $slug)
+    {
+        return view('frontend.gallery.detail');
     }
 }

@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#article">
+                    <a href="{!! route('article') !!}">
                         Article
                     </a>
                 </li>

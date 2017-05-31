@@ -160,6 +160,11 @@ Event
 				</div>    		
 	    	</div>
 	    </div>
+	    <div class="row">
+			<div class="col-md-12 text-center">
+				<a href="#" class="more-link">More Event<br><img src="{!! asset('amadeo/img/more.png') !!}"></a>
+			</div>
+		</div>
 	</div>
 	@include('frontend._include.article-panel')
 </div>
