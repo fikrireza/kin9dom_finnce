@@ -1,4 +1,4 @@
-@extends('main._layout')
+@extends('frontend._layout')
 
 @section('title')
 Event
@@ -117,11 +117,11 @@ Event
 @endsection
 
 @section('content')
-<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('img/banner-event.jpg') !!});">
+<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('amadeo/img/banner-event.jpg') !!});">
 </div>
 <div class="container-fluid padding-zero">                  
 	<ol class="breadcrumb2 base-color">
-		<li><a href="{!! url('home') !!}">Home</a></li>
+		<li><a href="{!! route('home') !!}">Home</a></li>
 		<li class="active">Event</li>        
 	</ol>
 </div>
@@ -140,38 +140,28 @@ Event
 	    </div>
 	    <div class="row event-content">
 	    	<div class="col-md-6">
-				<div class="event-thumbnail" style="background-image: url({!! asset('') !!});">
+				<div class="event-thumbnail" style="background-image: url({!! asset('amadeo/img/our-event-img-1.png') !!});">
 					
 				</div>
 				<div class="event-info">
 					<h4>KFC</h4>
 					<p>Lorem ipsum dolor sit amet, utinam iriure eam ex, has ei audire volutpat.</p>
-					<a href="{!! url('event/kfc ') !!}">View Event</a>
+					<a href="{!! route('event.detail', ['slug' => 'kfc']) !!}">View Event</a>
 				</div>    		
 	    	</div>
 	    	<div class="col-md-6">
-				<div class="event-thumbnail" style="background-image: url({!! asset('') !!});">
+				<div class="event-thumbnail" style="background-image: url({!! asset('amadeo/img/our-event-img-2.png') !!});">
 					
 				</div>
 				<div class="event-info">
 					<h4>Fire</h4>
 					<p>Lorem ipsum dolor sit amet, utinam iriure eam ex, has ei audire volutpat.</p>
-					<a href="{!! url('event/fire ') !!}">View Event</a>
-				</div>    		
-	    	</div>
-	    	<div class="col-md-6">
-				<div class="event-thumbnail" style="background-image: url({!! asset('') !!});">
-					
-				</div>
-				<div class="event-info">
-					<h4>Fire</h4>
-					<p>Lorem ipsum dolor sit amet, utinam iriure eam ex, has ei audire volutpat.</p>
-					<a href="{!! url('event/fire ') !!}">View Event</a>
+					<a href="{!! route('event.detail', ['slug' => 'fire']) !!}">View Event</a>
 				</div>    		
 	    	</div>
 	    </div>
 	</div>
-	@include('main._include.article-panel')
+	@include('frontend._include.article-panel')
 </div>
 	
 

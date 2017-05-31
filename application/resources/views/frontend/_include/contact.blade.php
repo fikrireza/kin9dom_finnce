@@ -43,7 +43,7 @@
                     </br>
                 </p>
                 <p>
-                    <img src="{!! asset('img/direction-img.png') !!}" style="height: 65px;">
+                    <img src="{!! asset('amadeo/img/direction-img.png') !!}" style="height: 65px;">
                         <span style="font-size: 20px; font-weight: bold; font-family: 'Helvetica LT Std">
                             Get Direction
                         </span>
@@ -55,18 +55,18 @@
                     Follow
                 </h5>
                 <p>
-                    <img class="social-icon" src="{!! asset('img/icon-facebook-circle.png') !!}"/>
-                    <img class="social-icon" src="{!! asset('img/icon-twitter-circle.png') !!}"/>
-                    <img class="social-icon" src="{!! asset('img/icon-instagram-circle.png') !!}"/>
-                    <img class="social-icon" src="{!! asset('img/icon-youtube-circle.png') !!}"/>
-                    <img class="social-icon" src="{!! asset('img/icon-google-circle.png') !!}"/>
+                    <img class="social-icon" src="{!! asset('amadeo/img/icon-facebook-circle.png') !!}"/>
+                    <img class="social-icon" src="{!! asset('amadeo/img/icon-twitter-circle.png') !!}"/>
+                    <img class="social-icon" src="{!! asset('amadeo/img/icon-instagram-circle.png') !!}"/>
+                    <img class="social-icon" src="{!! asset('amadeo/img/icon-youtube-circle.png') !!}"/>
+                    <img class="social-icon" src="{!! asset('amadeo/img/icon-google-circle.png') !!}"/>
                 </p>
                 <h5>
                     Office
                 </h5>
                 <p>
-                    <img class="logo-partner" src="{!! asset('img/logo-kbc.png') !!}"/>
-                    <img class="logo-partner" src="{!! asset('img/logo-fire.png') !!}"/>
+                    <img class="logo-partner" src="{!! asset('amadeo/img/logo-kbc.png') !!}"/>
+                    <img class="logo-partner" src="{!! asset('amadeo/img/logo-fire.png') !!}"/>
                 </p>
             </div>
             <div class="col-md-6 col-md-pull-3 base-color-darker" style="padding-bottom: 20px;">

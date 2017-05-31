@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3 col-xs-6 menu-panel">
             <div>
-                <img class="article-logo" src="{!! asset('img/icon-opportunities.png') !!}"/>
+                <img class="article-logo" src="{!! asset('amadeo/img/icon-opportunities.png') !!}"/>
                 <br>
                     <h4>
                         Opportunities
@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-3 col-xs-6 menu-panel">
             <div>
-                <img class="article-logo" src="{!! asset('img/icon-strategy.png') !!}"/>
+                <img class="article-logo" src="{!! asset('amadeo/img/icon-strategy.png') !!}"/>
                 <br>
                     <h4>
                         Strategy
@@ -42,7 +42,7 @@
         </div>
         <div class="col-md-3 col-xs-6 menu-panel">
             <div>
-                <img class="article-logo" src="{!! asset('img/icon-make-money.png') !!}"/>
+                <img class="article-logo" src="{!! asset('amadeo/img/icon-make-money.png') !!}"/>
                 <br>
                     <h4>
                         Make Money
@@ -62,7 +62,7 @@
         </div>
         <div class="col-md-3 col-xs-6 menu-panel">
             <div>
-                <img class="article-logo" src="{!! asset('img/icon-save-money.png') !!}"/>
+                <img class="article-logo" src="{!! asset('amadeo/img/icon-save-money.png') !!}"/>
                 <br>
                     <h4>
                         Save Money
