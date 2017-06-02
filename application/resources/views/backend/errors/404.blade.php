@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 
 @section('title')
-  <title>Aquasolve | Not Found</title>
+  <title>Kingdom Finance | Not Found</title>
 @endsection
 
 @section('content')

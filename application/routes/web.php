@@ -20,3 +20,8 @@ Route::get('/gallery/{slug}', 'HomeController@galleryDetail')->name('gallery.det
 Route::get('/article', 'HomeController@article')->name('article');
 Route::get('/article/{category}', 'HomeController@articleCategory')->name('article.category');
 Route::get('/article/{category}/{slug}', 'HomeController@articleDetail')->name('article.detail');
+
+Route::get('/admin', 'AuthController@showLogin')->name('admin');
+Route::post('/admin', 'AuthController@login')->name('admin.login');
+
+Route::get('/admin/home', 'DashboardController@index')->name('admin.home');
