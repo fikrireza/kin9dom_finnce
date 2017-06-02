@@ -14,32 +14,32 @@ class HomeController extends Controller
 
     public function about()
     {
-    	return view('frontend.about');
+    	return view('frontend.about.index');
     }
 
     public function event()
     {
-    	return view('frontend.event');
+    	return view('frontend.event.index');
     }
     
     public function eventDetail($slug)
     {
-    	return view('frontend.event.index');
+    	return view('frontend.event.detail');
     }
 
     public function gallery()
     {
-        return view('frontend.gallery');
+        return view('frontend.gallery.index');
     }
 
     public function galleryDetail($slug)
     {
-        return view('frontend.gallery.index');
+        return view('frontend.gallery.detail');
     }
 
     public function article()
     {
-        return view('frontend.article');
+        return view('frontend.article.index');
     }
 
     public function articleCategory($category)
@@ -49,6 +49,6 @@ class HomeController extends Controller
 
     public function articleDetail($category, $slug)
     {
-        return view('frontend.gallery.detail');
+        return view('frontend.article.detail');
     }
 }

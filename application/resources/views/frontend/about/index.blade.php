@@ -149,7 +149,7 @@ About
 <div class="panel-block">
 	<div class="container" id="about-us">
 	    <div class="text-center">
-	        <h2>
+	        <h2 class="line-title">
 	            About Us
 	        </h2>
 	        <h3>

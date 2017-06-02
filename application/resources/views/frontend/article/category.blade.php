@@ -18,6 +18,34 @@ All Category
 		padding: 0px;
 	}
 
+	.category-title
+	{
+		color: #f2c685;
+		font-family: 'Helvetica LT Std';
+		font-size: 38px;
+	    line-height: 38px;
+	    margin-top: 0px;
+	}
+
+	.watermark
+	{
+		position: relative;
+	}
+
+	.watermark .logo
+	{
+		position: absolute;
+	    opacity: 0.5;
+	    top: 250px;
+	    right: 10px;
+	    height: 340px;
+	}
+
+	.category-title:after
+	{
+		content: ' #';
+	}
+
 	.image-article
 	{
 	    height: 355px;
@@ -145,9 +173,10 @@ All Category
 	</ol>
 </div>
 <div class="panel-block">
-	<div class="container">
+	<div class="container watermark">
+		<img src="{!! asset('amadeo/img/icon-opportunities.png') !!}" class="logo">
 	    <div class="text-center">
-	        <h2>
+	        <h2 class="line-title">
 	            Article
 	        </h2>
 	        <h3>
@@ -165,7 +194,13 @@ All Category
 	        	</div>
 	    	</div>
 	    	<div class="col-md-6">
-	    		
+	    		<h3 class="category-title">
+	    			<b>Name</b><br/>
+	    			Category
+	    		</h3>
+	    		<p>
+	    			Lorem ipsum dolor sit amet, est ne suas omnesque platonem, ullum nostro cum te. Illud dissentiet id nec, ius corrumpit scriptorem instructior cu. Equidem insolens eu eum, cu aliquip lucilius repudiandae per. Id esse tota convenire qui, te corrumpit tincidunt signiferumque est. Utroque delicata adversarium duo ne.
+	    		</p>
 	    	</div>
 	    </div>
 
