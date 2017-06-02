@@ -4,22 +4,22 @@
     <head>
         <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
         @yield('meta')
-        <script src="{!! asset('assets/jquery-1.12.2/jquery.min.js') !!}" type="text/javascript">
+        <script src="{!! asset('amadeo/assets/jquery-1.12.2/jquery.min.js') !!}" type="text/javascript">
         </script>
-        <script src="{!! asset('assets/bootstrap-3.3.7-dist/js/bootstrap.min.js') !!}" type="text/javascript">
+        <script src="{!! asset('amadeo/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js') !!}" type="text/javascript">
         </script>
         <script src="https://www.google.com/recaptcha/api.js">
         </script>
         @yield('script')
-        <script src="{!! asset('js/main.min.js') !!}" type="text/javascript">
+        <script src="{!! asset('amadeo/js/main.min.js') !!}" type="text/javascript">
         </script>
 
-        <link href="{!! asset('assets/font-awesome-4.7.0/css/font-awesome.min.css') !!}" rel="stylesheet"/>
-        <link href="{!! asset('font/helvetica.min.css') !!}" rel="stylesheet" type="text/css"/>
-        <link href="{!! asset('font/sakkal-majalla.min.css') !!}" rel="stylesheet" type="text/css"/>
-        <link href="{!! asset('assets/bootstrap-3.3.7-dist/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css"/>
+        <link href="{!! asset('amadeo/assets/font-awesome-4.7.0/css/font-awesome.min.css') !!}" rel="stylesheet"/>
+        <link href="{!! asset('amadeo/font/helvetica.min.css') !!}" rel="stylesheet" type="text/css"/>
+        <link href="{!! asset('amadeo/font/sakkal-majalla.min.css') !!}" rel="stylesheet" type="text/css"/>
+        <link href="{!! asset('amadeo/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css"/>
         @yield('style')
-        <link href="{!! asset('css/main.min.css') !!}" rel="stylesheet" type="text/css"/>
+        <link href="{!! asset('amadeo/css/main.min.css') !!}" rel="stylesheet" type="text/css"/>
         <title>
             Kingdom Finance - @yield('title')
         </title>
@@ -28,9 +28,9 @@
         <nav class="nav2">
             <ul class="nav-logo">
                 <li>
-                    <a href="home">
-                        <img class="primary" src="{!! asset('img/logo-kfc-nav.png') !!}"/>
-                        <img class="secondary" src="{!! asset('img/logo-kfc-nav2.png') !!}"/>
+                    <a href="{!! route('home') !!}">
+                        <img class="primary" src="{!! asset('amadeo/img/logo-kfc-nav.png') !!}"/>
+                        <img class="secondary" src="{!! asset('amadeo/img/logo-kfc-nav2.png') !!}"/>
                     </a>
                 </li>
             </ul>
@@ -40,12 +40,12 @@
             </button>
             <ul class="menu" style="display: none;">
                 <li>
-                    <a href="{!! url('home') !!}">
+                    <a href="{!! route('home') !!}">
                         Home
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="{!! url('about') !!}">
+                    <a href="{!! route('about') !!}">
                         About Us
                     </a>
                     <!-- <div class="dropdown-content">
@@ -63,17 +63,17 @@
                     </a>
                 </li> -->
                 <li>
-                    <a href="{!! url('event') !!}">
+                    <a href="{!! route('event') !!}">
                         Event
                     </a>
                 </li>
                 <li>
-                    <a href="{!! url('gallery') !!}">
+                    <a href="{!! route('gallery') !!}">
                         Gallery
                     </a>
                 </li>
                 <li>
-                    <a href="#article">
+                    <a href="{!! route('article') !!}">
                         Article
                     </a>
                 </li>
@@ -86,7 +86,7 @@
         </nav>
         @yield('content')
 
-		@include('main._include.contact')
+		@include('frontend._include.contact')
         <div class="container-fluid text-center base-color-darkest" id="footer">
             © Copyright 2017 All Rights Reserved
         </div>

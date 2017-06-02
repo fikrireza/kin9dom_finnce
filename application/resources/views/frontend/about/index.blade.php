@@ -1,4 +1,4 @@
-@extends('main._layout')
+@extends('frontend._layout')
 
 @section('title')
 About
@@ -77,7 +77,7 @@ About
 
 		.image-about
 		{
-            width: 100%;
+            height: 325px;
 		}
 		
 		.arcordion
@@ -138,18 +138,18 @@ About
 @endsection
 
 @section('content')
-<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('img/banner-about.jpg') !!});">
+<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('amadeo/img/banner-about.jpg') !!});">
 </div>
 <div class="container-fluid padding-zero">                  
 	<ol class="breadcrumb2 base-color">
-		<li><a href="{!! url('home') !!}">Home</a></li>
+		<li><a href="{!! route('home') !!}">Home</a></li>
 		<li class="active">About Us</li>        
 	</ol>
 </div>
 <div class="panel-block">
 	<div class="container" id="about-us">
 	    <div class="text-center">
-	        <h2>
+	        <h2 class="line-title">
 	            About Us
 	        </h2>
 	        <h3>
@@ -159,7 +159,7 @@ About
 	    <div class="row about-content">
 	    	<div class="col-md-6 col-md-push-6">
 	        	<div class="image-border image-about">
-	        		<div style="background-image: url('{!! asset('img/about-us2-img.jpg') !!}');">
+	        		<div style="background-image: url('{!! asset('amadeo/img/about-us2-img.jpg') !!}');">
 	        			<div>
 	        				
 	        			</div>
@@ -223,7 +223,7 @@ About
 	        
 	    </div>
 	</div>
-	@include('main._include.article-panel')
+	@include('frontend._include.article-panel')
 </div>
 	
 

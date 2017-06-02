@@ -1,4 +1,4 @@
-@extends('main._layout')
+@extends('frontend._layout')
 
 @section('title')
 Home
@@ -23,8 +23,6 @@ Home
         width: 100%;
         height: 270px;
     }
-
-	
 
 	#about-us
 	{
@@ -165,14 +163,21 @@ Home
 			display: block;
 		}
 
-		.event-content > div > .event-hover > div > .event-line
+		.event-content > div > .event-hover > .event-line:before,
+        .event-content > div > .event-hover > .event-line:after
 		{
-			width: 0px;
+            content: '';
+            display: inline-block;
+            border-bottom: 2px solid white;
+            width: 0px;
+            position: relative;
+            top: -8px;
 			-webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
     		transition: width 2s;
 		}
 
-		.event-content > div:hover > .event-hover > div > .event-line
+		.event-content > div:hover > .event-hover > .event-line:before,
+        .event-content > div:hover > .event-hover > .event-line:after
 		{
 			width: 105px;
 		}
@@ -226,6 +231,7 @@ Home
 		    padding: 15px;
 		    border: none;
 			overflow: hidden;
+            background-color: white;
 		    box-shadow: 3px 7px 20px rgba(0, 0, 0, 0.51);
 		}
 
@@ -236,8 +242,8 @@ Home
 @endsection
 
 @section('content')
-<div class="container-fluid header-block panel-block" id="home" style="background-image:url({!! asset('img/banner.jpg') !!});">
-	@include('main._include.article-panel')
+<div class="container-fluid header-block panel-block" id="home" style="background-image:url({!! asset('amadeo/img/banner.jpg') !!});">
+	@include('frontend._include.article-panel')
 </div>
 
 <div class="container" id="about-us">
@@ -260,7 +266,7 @@ Home
         </div>
         <div class="col-md-6">
         	<div class="image-border image-about">
-        		<div style="background-image: url('{!! asset('img/about-us-img.jpg') !!}');">
+        		<div style="background-image: url('{!! asset('amadeo/img/about-us-img.jpg') !!}');">
         			<div>
         				
         			</div>
@@ -280,57 +286,45 @@ Home
     </div>
     <div class="row event-content">
         <!-- dynamic data -->
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('img/our-event-img-1.png') !!})">
+        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-1.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
+                <div class="event-line">
                     Surabaya
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('img/our-event-img-2.png') !!})">
+        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-2.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
+                <div class="event-line">
                     Jakarta
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('img/our-event-img-3.png') !!})">
+        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-3.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
+                <div class="event-line">
                     Bandung
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('img/our-event-img-4.png') !!})">
+        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-4.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
+                <div class="event-line">
                     Semarang
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('img/our-event-img-5.png') !!})">
+        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-5.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
+                <div class="event-line">
                     Yogyakarta
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('img/our-event-img-6.png') !!})">
+        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-6.png') !!})">
             <div class="event-hover">
-                <div>
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
+                <div class="event-line">
                     Denpasar
-                    <img class="event-line" src="{!! asset('img/line.png') !!}"/>
                 </div>
             </div>
         </div>
@@ -350,12 +344,12 @@ Home
     <div class="row">
         <div class="col-md-4">
             <div class="article-block">
-                <div class="article-img" style="background-image: url({!! asset('img/article-1.png') !!})">
+                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-1.png') !!})">
                     <div class="article-hover">
                         + View Article
                     </div>
                     <div class="article-more">
-                        <img src="{!! asset('img/more-img.png') !!}" style="width: 45px;"/>
+                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
                     </div>
                 </div>
                 <div class="article-description">
@@ -370,12 +364,12 @@ Home
         </div>
         <div class="col-md-4">
             <div class="article-block">
-                <div class="article-img" style="background-image: url({!! asset('img/article-2.png') !!})">
+                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-2.png') !!})">
                     <div class="article-hover">
                         + View Article
                     </div>
                     <div class="article-more">
-                        <img src="{!! asset('img/more-img.png') !!}" style="width: 45px;"/>
+                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
                     </div>
                 </div>
                 <div class="article-description">
@@ -390,12 +384,12 @@ Home
         </div>
         <div class="col-md-4">
             <div class="article-block">
-                <div class="article-img" style="background-image: url({!! asset('img/article-3.png') !!})">
+                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-3.png') !!})">
                     <div class="article-hover">
                         + View Article
                     </div>
                     <div class="article-more">
-                        <img src="{!! asset('img/more-img.png') !!}" style="width: 45px;"/>
+                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
                     </div>
                 </div>
                 <div class="article-description">

@@ -1,11 +1,11 @@
-@extends('main._layout')
+@extends('frontend._layout')
 
 @section('title')
 Event
 @endsection
 
 @section('script')
-<script type="text/javascript" src="{!! asset('assets/slick-1.6.0/slick.min.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('amadeo/assets/slick-1.6.0/slick.min.js') !!}"></script>
 <script type="text/javascript">
 	$(function() {
 		$('.image-carousel').slick({
@@ -14,7 +14,7 @@ Event
 		});
 
 		$('.image-carousel').on('afterChange', function(slick, currentSlide){
-			// console.log(currentSlide.currentSlide);
+			console.log(currentSlide.currentSlide);
 			$('.dots-carousel div').removeClass('active');
 			$('.dots-carousel div:nth-child('+ (currentSlide.currentSlide + 1) +')').addClass('active')
 		});
@@ -27,12 +27,26 @@ Event
 @endsection
 
 @section('style')
-<link rel="stylesheet" type="text/css" href="{!! asset('assets/slick-1.6.0/slick.css') !!}"/>
+<link rel="stylesheet" type="text/css" href="{!! asset('amadeo/assets/slick-1.6.0/slick.css') !!}"/>
 <style type="text/css">
     .header-block
 	{
 		min-height: 100%;
 		padding: 0px;
+	}
+
+	.extend-background
+	{
+		position: relative;
+	}
+
+	.extend-background .background
+	{
+	    position: absolute;
+	    width: 100%;
+	    height: 200px;
+	    bottom: 0px;
+	    z-index: -1;
 	}
 
 	.image-carousel
@@ -139,19 +153,19 @@ Event
 @endsection
 
 @section('content')
-<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('img/banner-event.jpg') !!});">
+<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('amadeo/img/banner-event.jpg') !!});">
 </div>
 <div class="container-fluid padding-zero">                  
 	<ol class="breadcrumb2 base-color">
-		<li><a href="{!! url('home') !!}">Home</a></li>
-		<li><a href="{!! url('event') !!}">Event</a></li>
+		<li><a href="{!! route('home') !!}">Home</a></li>
+		<li><a href="{!! route('event') !!}">Event</a></li>
 		<li class="active">{Name Event}</li>       
 	</ol>
 </div>
 <div class="panel-block">
 	<div class="container-fluid" id="our-event">
 	    <div class="text-center">
-	        <h2>
+	        <h2 class="line-title">
 	            Our Event
 	        </h2>
 	        <h3>
@@ -162,21 +176,21 @@ Event
 			<div class="col-md-7">
 				<div class="image-carousel">
 					<div class="image-border image-thumbnail">
-		        		<div style="background-image: url('{!! asset('img/our-event-img-1.png') !!}');">
+		        		<div style="background-image: url('{!! asset('amadeo/img/our-event-img-1.png') !!}');">
 		        			<div>
 		        				
 		        			</div>
 		        		</div>
 		        	</div>
 		        	<div class="image-border image-thumbnail">
-		        		<div style="background-image: url('{!! asset('img/our-event-img-2.png') !!}');">
+		        		<div style="background-image: url('{!! asset('amadeo/img/our-event-img-2.png') !!}');">
 		        			<div>
 		        				
 		        			</div>
 		        		</div>
 		        	</div>
 		        	<div class="image-border image-thumbnail">
-		        		<div style="background-image: url('{!! asset('img/our-event-img-3.png') !!}');">
+		        		<div style="background-image: url('{!! asset('amadeo/img/our-event-img-3.png') !!}');">
 		        			<div>
 		        				
 		        			</div>
@@ -242,7 +256,7 @@ Event
 		</div>
 	</div>
 
-	@include('main._include.article-panel')
+	@include('frontend._include.article-panel')
 </div>
 	
 
