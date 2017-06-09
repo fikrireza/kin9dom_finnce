@@ -1,84 +1,24 @@
-<div class="article-panel">
+@php
+    $category = App\ArticleCategory::where('flag_publish', 1)->orderBy('id', 'DESC')->orderBy('priority', 'DESC')->get();
+@endphp
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 col-xs-6 menu-panel">
-            <div>
-                <img class="article-logo" src="{!! asset('amadeo/img/icon-opportunities.png') !!}"/>
-                <br>
-                    <h4>
-                        Opportunities
-                    </h4>
-                    <br>
-                        <p>
-                            Lorem Ipsum Dolor Sit Amet
-                        </p>
-                        <div class="hidden-idle">
-                            <a class="button-link" href="#more">
-                                More
-                            </a>
-                        </div>
-                    </br>
-                </br>
+        @foreach($category as $list)
+        <div class="col-md-3 col-xs-6 text-center padding-zero article-panel">
+            <div class="article-block-hover">
+                <img class="article-logo" src="{!! asset($list->logo) !!}"/>
+                <h4>
+                    {!! $list->name !!}
+                </h4>
+                {!! $list->short_description !!}
+                <div class="hidden-idle">
+                    <a class="button-link" href="{!! route('article.category', ['category' => $list->slug]) !!}">
+                        More
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="col-md-3 col-xs-6 menu-panel">
-            <div>
-                <img class="article-logo" src="{!! asset('amadeo/img/icon-strategy.png') !!}"/>
-                <br>
-                    <h4>
-                        Strategy
-                    </h4>
-                    <br>
-                        <p>
-                            Lorem Ipsum Dolor Sit Amet
-                        </p>
-                        <div class="hidden-idle">
-                            <a class="button-link" href="#more">
-                                More
-                            </a>
-                        </div>
-                    </br>
-                </br>
-            </div>
-        </div>
-        <div class="col-md-3 col-xs-6 menu-panel">
-            <div>
-                <img class="article-logo" src="{!! asset('amadeo/img/icon-make-money.png') !!}"/>
-                <br>
-                    <h4>
-                        Make Money
-                    </h4>
-                    <br>
-                        <p>
-                            Lorem Ipsum Dolor Sit Amet
-                        </p>
-                        <div class="hidden-idle">
-                            <a class="button-link" href="#more">
-                                More
-                            </a>
-                        </div>
-                    </br>
-                </br>
-            </div>
-        </div>
-        <div class="col-md-3 col-xs-6 menu-panel">
-            <div>
-                <img class="article-logo" src="{!! asset('amadeo/img/icon-save-money.png') !!}"/>
-                <br>
-                    <h4>
-                        Save Money
-                    </h4>
-                    <br>
-                        <p>
-                            Lorem Ipsum Dolor Sit Amet
-                        </p>
-                        <div class="hidden-idle">
-                            <a class="button-link" href="#more">
-                                More
-                            </a>
-                        </div>
-                    </br>
-                </br>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>

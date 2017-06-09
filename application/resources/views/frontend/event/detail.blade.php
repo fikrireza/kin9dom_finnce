@@ -1,7 +1,16 @@
 @extends('frontend._layout')
 
+@section('meta')
+<meta property="og:title" content="{{ $event->meta_title }}" />
+<meta property="og:description " content="{{ $event->meta_description }}" />
+<meta property="og:type" content="website" />
+<meta name="keywords" content="{{ $event->meta_keyword }}">
+<meta property="og:url" content="{{ $event->meta_url }}" />
+<meta property="og:image" content="{{ $event->meta_image }}" />
+@endsection
+
 @section('title')
-Event
+Event - {{ $event->name }}
 @endsection
 
 @section('script')
@@ -141,7 +150,7 @@ Event
 
 		#our-event
 		{
-		    padding-bottom: 120px;
+		    /*padding-bottom: 120px;*/
 		}
 
 		.image-thumbnail
@@ -153,60 +162,61 @@ Event
 @endsection
 
 @section('content')
-<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('amadeo/img/banner-event.jpg') !!});">
+@foreach ($imageContent as $list)
+	@if ($list->for == 'event.header')
+		<div class="container-fluid header-block" id="home" style="background-image:url({!! asset($list->image) !!});">
+		</div>
+		@break
+	@endif
+@endforeach
+
+<div class="base-color"> 
+	<div class="container">
+		<ol class="breadcrumb2 margin-zero">
+			<li><a href="{!! route('home') !!}">Home</a></li>
+			<li><a href="{!! route('event') !!}">Event</a></li>
+			<li class="active">{{ $event->name }}</li>          
+		</ol>
+	</div>                 
 </div>
-<div class="container-fluid padding-zero">                  
-	<ol class="breadcrumb2 base-color">
-		<li><a href="{!! route('home') !!}">Home</a></li>
-		<li><a href="{!! route('event') !!}">Event</a></li>
-		<li class="active">{Name Event}</li>       
-	</ol>
-</div>
+
 <div class="panel-block">
 	<div class="container-fluid" id="our-event">
 	    <div class="text-center">
-	        <h2 class="line-title">
-	            Our Event
-	        </h2>
-	        <h3>
-	            Welcome to Kingdom Financial
-	        </h3>
+	        @foreach ($content as $list)
+				@if ($list->for == 'event')
+			        <h2 class="line-title">
+						{!! $list->title !!}
+					</h2>
+					<h3>
+						{!! $list->subtitle !!}
+					</h3>
+					{!! $list->description !!}
+	        		@break
+				@endif
+			@endforeach
 	    </div>
 	    <div class="row base-color-lighter">
 			<div class="col-md-7">
 				<div class="image-carousel">
-					<div class="image-border image-thumbnail">
-		        		<div style="background-image: url('{!! asset('amadeo/img/our-event-img-1.png') !!}');">
-		        			<div>
-		        				
-		        			</div>
-		        		</div>
-		        	</div>
-		        	<div class="image-border image-thumbnail">
-		        		<div style="background-image: url('{!! asset('amadeo/img/our-event-img-2.png') !!}');">
-		        			<div>
-		        				
-		        			</div>
-		        		</div>
-		        	</div>
-		        	<div class="image-border image-thumbnail">
-		        		<div style="background-image: url('{!! asset('amadeo/img/our-event-img-3.png') !!}');">
-		        			<div>
-		        				
-		        			</div>
-		        		</div>
-		        	</div>
+					@foreach($eventImage as $list)
+						<div class="image-border image-thumbnail">
+			        		<div style="background-image: url('{!! asset($list->image) !!}');">
+			        			<div>
+			        				
+			        			</div>
+			        		</div>
+			        	</div>
+			        @endforeach
 				</div>
 				<div class="dots-carousel">
-					<div class="active" goto-slide="0">
-						
-					</div>
-					<div class="" goto-slide="1">
-						
-					</div>
-					<div class="" goto-slide="2">
-						
-					</div>
+					@php $count=0; @endphp
+					@foreach($eventImage as $list)
+						<div class="@if($count == 0) active @endif" goto-slide="{!! $count !!}">
+							
+						</div>
+						@php $count++; @endphp
+					@endforeach
 				</div>
 			</div>
 			<div class="col-md-5">
@@ -215,7 +225,7 @@ Event
 						<td width="5%">&nbsp;</td>
 						<td width="95%">
 							<h4 class="event-title">
-								Muda Kaya Raya
+								{{ $event->name }}
 							</h4>
 						</td>
 					</tr>
@@ -225,15 +235,15 @@ Event
 							<table width="100%" style="font-family: 'Helvetica LT Std';">
 								<tr>
 									<td class="no-border" width="20%" valign="top"><b>Tanggal</b></td>
-									<td class="no-border" valign="top"><b>:</b> <span class="event-info">1 Januari 2014</span></td>
+									<td class="no-border" valign="top"><b>:</b> <span class="event-info">{{ date('d F Y', strtotime($event->date)) }}</span></td>
 								</tr>
 								<tr>
 									<td class="no-border" valign="top"><b>Jam</b></td>
-									<td class="no-border" valign="top"><b>:</b> <span class="event-info">07.00 - 10.00</span></td>
+									<td class="no-border" valign="top"><b>:</b> <span class="event-info">{{ $event->time }}</span></td>
 								</tr>
 								<tr>
 									<td class="no-border" valign="top"><b>Lokasi</b></td>
-									<td class="no-border" valign="top"><b>:</b> <span class="event-info">Pekan Raya Jakarta</span></td>
+									<td class="no-border" valign="top"><b>:</b> <span class="event-info">{{ $event->location }}</span></td>
 								</tr>
 							</table>
 						</td>
@@ -241,14 +251,12 @@ Event
 					<tr>
 						<td>&nbsp;</td>
 						<td>
-							<p>
-								Lorem ipsum dolor sit amet, utinam iriure eam ex, has ei audire volutpat. Lorem mollis consequat vix id, ad quando officiis pri, ei est tempor alterum assentior. Possit iriure equidem no mel, quo ei animal admodum. Mei tritani apeirian adversarium te, cum at commune placerat, ut qui dicunt pertinacia. Vide splendide ad mel, sit id persius meliore. Eu vel oportere prodesset, vim erant dictas ex. An has vide minim hendrerit. An vis quando ignota, nam ne timeam feugait delicata, usu erat justo id. Ne novum legimus conceptam mel, fugit appetere antiopam te cum. His an laudem quidam, vero sonet periculis vim ei, pri an dolor populo. Pri tollit deseruisse id.
-							</p>
-							<div class="text-center">
+							{!! $event->description !!}
+							<!-- <div class="text-center">
 								<a href="#" class="btn-link base-color-darker">
 									Register Event
 								</a>
-							</div>
+							</div> -->
 						</td>
 					</tr>
 				</table>

@@ -1,11 +1,36 @@
 @extends('frontend._layout')
 
+@section('meta')
+<meta property="og:title" content="{{ $meta->meta_title }}" />
+<meta property="og:description " content="{{ $meta->meta_description }}" />
+<meta property="og:type" content="website" />
+<meta name="keywords" content="{{ $meta->meta_keyword }}">
+<meta property="og:url" content="{{ $meta->meta_url }}" />
+<meta property="og:image" content="{{ $meta->meta_image }}" />
+@endsection
+
 @section('title')
 Article
 @endsection
 
 @section('script')
 <script type="text/javascript">
+	$(function() {
+		var startPage = 2;
+		$(".more-link").click(function(){
+		    $.ajax({url: "{{ route('article.more') }}/" + startPage, success: function(result){
+		        if(result == '')
+		        {
+		        	$(".more-link").remove();
+		        }
+		        else
+		        {
+		        	$(".append").append(result);
+			        startPage++;
+		        }
+		    }});
+		});
+	});
     
 </script>
 @endsection
@@ -54,6 +79,11 @@ Article
 	    border-image: url('amadeo/img/border.png') 75 round;
 	}
 
+	.article-hover a
+	{
+		color: white;
+	}
+
 
 	@media (min-width:992px) 
 	{
@@ -66,7 +96,7 @@ Article
 
 		#article
 		{
-		    padding-bottom: 120px;
+		    /*padding-bottom: 120px;*/
 		}
 
 		.more-width
@@ -118,7 +148,7 @@ Article
 		.article-block > .article-description
 		{
 			width: 100%;
-		    height: 145px;
+		    height: 170px;
 		    padding: 15px;
 		    border: none;
 			overflow: hidden;
@@ -130,214 +160,70 @@ Article
 @endsection
 
 @section('content')
-<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('amadeo/img/banner-event.jpg') !!});">
+@foreach ($imageContent as $list)
+	@if ($list->for == 'article.header')
+		<div class="container-fluid header-block" id="home" style="background-image:url({!! asset($list->image) !!});">
+		</div>
+		@break
+	@endif
+@endforeach
+
+<div class="base-color"> 
+	<div class="container">
+		<ol class="breadcrumb2 margin-zero">
+			<li><a href="{!! route('home') !!}">Home</a></li>
+			<li class="active">Article</li>            
+		</ol>
+	</div>                 
 </div>
-<div class="container-fluid padding-zero">                  
-	<ol class="breadcrumb2 base-color">
-		<li><a href="{!! route('home') !!}">Home</a></li>
-		<li class="active">Article</li>        
-	</ol>
-</div>
-<div class="panel-block">
-	<div class="container more-width" id="article">
-	    <div class="text-center">
-	        <h2 class="line-title">
-	            Our Event
-	        </h2>
-	        <h3>
-	            Welcome to Kingdom Financial
-	        </h3>
-	    </div>
-	    <div class="row frame-border">
-	    	<div class="col-md-4">
-	            <div class="article-block">
-	                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-1.png') !!})">
-	                    <div class="article-hover">
-	                        + View Article
-	                    </div>
-	                    <div class="article-more">
-	                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-	                    </div>
-	                </div>
-	                <div class="article-description">
-	                    <h4>
-	                        8 Resiko Asuransi Pendidikan
-	                    </h4>
-	                    <p>
-	                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-md-4">
-	            <div class="article-block">
-	                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-2.png') !!})">
-	                    <div class="article-hover">
-	                        + View Article
-	                    </div>
-	                    <div class="article-more">
-	                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-	                    </div>
-	                </div>
-	                <div class="article-description">
-	                    <h4>
-	                        Tips Mencari Asuransi
-	                    </h4>
-	                    <p>
-	                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-md-4">
-	            <div class="article-block">
-	                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-3.png') !!})">
-	                    <div class="article-hover">
-	                        + View Article
-	                    </div>
-	                    <div class="article-more">
-	                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-	                    </div>
-	                </div>
-	                <div class="article-description">
-	                    <h4>
-	                        Kenali Modus Penipuan Investasi
-	                    </h4>
-	                    <p>
-	                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-md-4">
-	            <div class="article-block">
-	                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-1.png') !!})">
-	                    <div class="article-hover">
-	                        + View Article
-	                    </div>
-	                    <div class="article-more">
-	                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-	                    </div>
-	                </div>
-	                <div class="article-description">
-	                    <h4>
-	                        8 Resiko Asuransi Pendidikan
-	                    </h4>
-	                    <p>
-	                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-md-4">
-	            <div class="article-block">
-	                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-2.png') !!})">
-	                    <div class="article-hover">
-	                        + View Article
-	                    </div>
-	                    <div class="article-more">
-	                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-	                    </div>
-	                </div>
-	                <div class="article-description">
-	                    <h4>
-	                        Tips Mencari Asuransi
-	                    </h4>
-	                    <p>
-	                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-md-4">
-	            <div class="article-block">
-	                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-3.png') !!})">
-	                    <div class="article-hover">
-	                        + View Article
-	                    </div>
-	                    <div class="article-more">
-	                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-	                    </div>
-	                </div>
-	                <div class="article-description">
-	                    <h4>
-	                        Kenali Modus Penipuan Investasi
-	                    </h4>
-	                    <p>
-	                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-md-4">
-	            <div class="article-block">
-	                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-1.png') !!})">
-	                    <div class="article-hover">
-	                        + View Article
-	                    </div>
-	                    <div class="article-more">
-	                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-	                    </div>
-	                </div>
-	                <div class="article-description">
-	                    <h4>
-	                        8 Resiko Asuransi Pendidikan
-	                    </h4>
-	                    <p>
-	                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-md-4">
-	            <div class="article-block">
-	                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-2.png') !!})">
-	                    <div class="article-hover">
-	                        + View Article
-	                    </div>
-	                    <div class="article-more">
-	                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-	                    </div>
-	                </div>
-	                <div class="article-description">
-	                    <h4>
-	                        Tips Mencari Asuransi
-	                    </h4>
-	                    <p>
-	                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-md-4">
-	            <div class="article-block">
-	                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-3.png') !!})">
-	                    <div class="article-hover">
-	                        + View Article
-	                    </div>
-	                    <div class="article-more">
-	                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-	                    </div>
-	                </div>
-	                <div class="article-description">
-	                    <h4>
-	                        Kenali Modus Penipuan Investasi
-	                    </h4>
-	                    <p>
-	                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	                    </p>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	    <div class="row">
-			<div class="col-md-12 text-center">
-				<a href="#" class="more-link">More Article<br><img src="{!! asset('amadeo/img/more.png') !!}"></a>
+
+@foreach ($content as $list)
+	@if ($list->for == 'article')
+		<div class="panel-block">
+			<div class="container more-width" id="article">
+			    <div class="text-center">
+			        <h2 class="line-title">
+			            {!! $list->title !!}
+			        </h2>
+			        <h3>
+						{!! $list->subtitle !!}
+					</h3>
+					{!! $list->description !!}
+			    </div>
+			    <div class="row frame-border append">
+			    	@foreach ($article as $list)
+						<div class="col-md-4">
+							<div class="article-block">
+								<div class="article-img" style="background-image: url({!! asset($list->image) !!})">
+									<div class="article-hover">
+										<a href="{{ route('article.detail', ['category' => $list->category, 'slug' => $list->slug]) }}">+ View Article</a>
+									</div>
+									<div class="article-more">
+										<a href="{{ route('article.detail', ['category' => $list->category, 'slug' => $list->slug]) }}"><img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/></a>
+									</div>
+								</div>
+								<div class="article-description">
+									<h4>
+										{!! $list->name !!}
+									</h4>
+									{!! $list->short_description !!}
+								</div>
+							</div>
+						</div>
+					@endforeach
+			    </div>
+			    <div class="row">
+					<div class="col-md-12 text-center">
+						<a href="#" class="more-link" onclick="return false">More Article<br><img src="{!! asset('amadeo/img/more.png') !!}"></a>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	@include('frontend._include.article-panel')
-</div>
+
+		@break
+	@endif
+@endforeach
+@include('frontend._include.article-panel')
 	
 
 @endsection

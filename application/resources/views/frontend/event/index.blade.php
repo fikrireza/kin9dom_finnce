@@ -1,11 +1,36 @@
 @extends('frontend._layout')
 
+@section('meta')
+<meta property="og:title" content="{{ $meta->meta_title }}" />
+<meta property="og:description " content="{{ $meta->meta_description }}" />
+<meta property="og:type" content="website" />
+<meta name="keywords" content="{{ $meta->meta_keyword }}">
+<meta property="og:url" content="{{ $meta->meta_url }}" />
+<meta property="og:image" content="{{ $meta->meta_image }}" />
+@endsection
+
 @section('title')
 Event
 @endsection
 
 @section('script')
 <script type="text/javascript">
+	$(function() {
+		var startPage = 2;
+		$(".more-link").click(function(){
+		    $.ajax({url: "{{ route('event.more') }}/" + startPage, success: function(result){
+		        if(result == '')
+		        {
+		        	$(".more-link").remove();
+		        }
+		        else
+		        {
+		        	$(".append").append(result);
+			        startPage++;
+		        }
+		    }});
+		});
+	});
     
 </script>
 @endsection
@@ -110,59 +135,64 @@ Event
 
 		#our-event
 		{
-		    padding-bottom: 120px;
+		    /*padding-bottom: 120px;*/
 		}
 	}
 </style>
 @endsection
 
 @section('content')
-<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('amadeo/img/banner-event.jpg') !!});">
+@foreach ($imageContent as $list)
+	@if ($list->for == 'event.header')
+		<div class="container-fluid header-block" id="home" style="background-image:url({!! asset($list->image) !!});">
+		</div>
+		@break
+	@endif
+@endforeach
+
+<div class="base-color"> 
+	<div class="container">
+		<ol class="breadcrumb2 margin-zero">
+			<li><a href="{!! route('home') !!}">Home</a></li>
+			<li class="active">Event</li>          
+		</ol>
+	</div>                 
 </div>
-<div class="container-fluid padding-zero">                  
-	<ol class="breadcrumb2 base-color">
-		<li><a href="{!! route('home') !!}">Home</a></li>
-		<li class="active">Event</li>        
-	</ol>
-</div>
+
 <div class="panel-block">
 	<div class="container" id="our-event">
 	    <div class="text-center">
-	        <h2 class="line-title">
-	            Our Event
-	        </h2>
-	        <h3>
-	            Welcome to Kingdom Financial
-	        </h3>
-	        <p>
-	        	Lorem ipsum dolor sit amet, utinam iriure eam ex, has ei audire volutpat. Lorem mollis consequat vix id, ad quando officiis pri, ei est tempor alterum assentior. Possit iriure equidem no mel, quo ei animal admodum. Mei tritani apeirian adversarium te, cum at commune placerat, ut qui dicunt pertinacia. Vide splendide ad mel, sit id persius meliore. Eu vel oportere prodesset, vim erant dictas ex. An has vide minim hendrerit. An vis quando ignota, nam ne timeam feugait delicata, usu erat justo id. Ne novum legimus conceptam mel, fugit appetere antiopam te cum. His an laudem quidam, vero sonet periculis vim ei, pri an dolor populo. Pri tollit deseruisse id.
-	        </p>
+	        @foreach ($content as $list)
+				@if ($list->for == 'event')
+			        <h2 class="line-title">
+						{!! $list->title !!}
+					</h2>
+					<h3>
+						{!! $list->subtitle !!}
+					</h3>
+					{!! $list->description !!}
+	        		@break
+				@endif
+			@endforeach
 	    </div>
-	    <div class="row event-content">
-	    	<div class="col-md-6">
-				<div class="event-thumbnail" style="background-image: url({!! asset('amadeo/img/our-event-img-1.png') !!});">
-					
-				</div>
-				<div class="event-info">
-					<h4>KFC</h4>
-					<p>Lorem ipsum dolor sit amet, utinam iriure eam ex, has ei audire volutpat.</p>
-					<a href="{!! route('event.detail', ['slug' => 'kfc']) !!}">View Event</a>
-				</div>    		
-	    	</div>
-	    	<div class="col-md-6">
-				<div class="event-thumbnail" style="background-image: url({!! asset('amadeo/img/our-event-img-2.png') !!});">
-					
-				</div>
-				<div class="event-info">
-					<h4>Fire</h4>
-					<p>Lorem ipsum dolor sit amet, utinam iriure eam ex, has ei audire volutpat.</p>
-					<a href="{!! route('event.detail', ['slug' => 'fire']) !!}">View Event</a>
-				</div>    		
-	    	</div>
+	    <div class="row event-content append">
+	    	@foreach ($event as $list)
+		    	<div class="col-md-6">
+		    		@php $eventImage   = App\EventImage::where('id_event', $list->id )->orderBy('priority', 'DESC')->first(); @endphp
+					<div class="event-thumbnail" style="background-image: url({{ asset($eventImage['image']) }});">
+						
+					</div>
+					<div class="event-info">
+						<h4>{!! $list->name !!}</h4>
+						{!! $list->short_description !!}
+						<a href="{!! route('event.detail', ['slug' => $list->slug]) !!}">View Event</a>
+					</div>    		
+		    	</div>
+	    	@endforeach
 	    </div>
 	    <div class="row">
 			<div class="col-md-12 text-center">
-				<a href="#" class="more-link">More Event<br><img src="{!! asset('amadeo/img/more.png') !!}"></a>
+				<a href="#" class="more-link" onclick="return false">More Event<br><img src="{!! asset('amadeo/img/more.png') !!}"></a>
 			</div>
 		</div>
 	</div>

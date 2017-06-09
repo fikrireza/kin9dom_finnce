@@ -1,28 +1,37 @@
 @extends('frontend._layout')
 
+@section('meta')
+<meta property="og:title" content="{{ $meta->meta_title }}" />
+<meta property="og:description " content="{{ $meta->meta_description }}" />
+<meta property="og:type" content="website" />
+<meta name="keywords" content="{{ $meta->meta_keyword }}">
+<meta property="og:url" content="{{ $meta->meta_url }}" />
+<meta property="og:image" content="{{ $meta->meta_image }}" />
+@endsection
+
 @section('title')
 Home
 @endsection
 
 @section('script')
 <script type="text/javascript">
-    
+	
 </script>
 @endsection
 
 @section('style')
 <style type="text/css">
-    .header-block
+	.header-block
 	{
 		min-height: 100%;
 		padding: 0px;
 	}
 
-    .image-about
-    {
-        width: 100%;
-        height: 270px;
-    }
+	.image-about
+	{
+		width: 100%;
+		height: 270px;
+	}
 
 	#about-us
 	{
@@ -48,19 +57,19 @@ Home
 	.event-line
 	{
 		height: 1px;
-	    width: 50px;
-	    padding: 0px 7px;
+		width: 50px;
+		padding: 0px 7px;
 	}
 
 	.event-hover
 	{
 		display: block;
 		background-color: rgba(255, 255, 255, 0.4);
-	    height: 100%;
-	    text-align: center;
-	    font-size: 45px;
-	    font-weight: bold;
-	    position: relative;
+		height: 100%;
+		text-align: center;
+		font-size: 45px;
+		font-weight: bold;
+		position: relative;
 	}
 
 	.event-hover > div
@@ -69,6 +78,11 @@ Home
 		width: 100%;
 		top: 33px;
 		font-size: 24px;
+	}
+
+	.event-hover > div > a
+	{
+		color: #fff;
 	}
 
 	.article-block > .article-img
@@ -85,12 +99,17 @@ Home
 	{
 		display: block;
 		width: 100%;
-	    height: 100%;
-	    color: white;
-	    background-color: rgba(242, 198, 133, 0.7);
-	    font-size: 30px;
-	    text-align: center;
-	    padding-top: 43px;
+		height: 100%;
+		color: white;
+		background-color: rgba(242, 198, 133, 0.7);
+		font-size: 30px;
+		text-align: center;
+		padding-top: 43px;
+	}
+
+	.article-hover a
+	{
+		color: white;
 	}
 
 	.article-block > .article-img > .article-more
@@ -118,10 +137,10 @@ Home
 			padding: 0px 40px;
 		}
 
-        .image-about
-        {
-            height: 325px;
-        }
+		.image-about
+		{
+			height: 325px;
+		}
 
 		/*event block*/
 		.event-content > div
@@ -129,7 +148,7 @@ Home
 			height: 290px;
 			background-size: 100%;
 			-webkit-transition: background-size 1s; /* For Safari 3.1 to 6.0 */
-    		transition: background-size 1s;
+			transition: background-size 1s;
 		}
 
 		.event-content > div:hover
@@ -140,13 +159,13 @@ Home
 		.event-hover > div
 		{
 			top: 120px;
-		    font-size: 40px;
+			font-size: 40px;
 		}
 
 		.event-hover > div
 		{
 			top: 120px;
-		    font-size: 40px;
+			font-size: 40px;
 		}
 
 
@@ -154,7 +173,7 @@ Home
 		{
 			opacity: 0;
 			-webkit-transition: opacity 1s; /* For Safari 3.1 to 6.0 */
-    		transition: opacity 1s;
+			transition: opacity 1s;
 		}
 
 		.event-content > div:hover > .event-hover
@@ -164,20 +183,20 @@ Home
 		}
 
 		.event-content > div > .event-hover > .event-line:before,
-        .event-content > div > .event-hover > .event-line:after
+		.event-content > div > .event-hover > .event-line:after
 		{
-            content: '';
-            display: inline-block;
-            border-bottom: 2px solid white;
-            width: 0px;
-            position: relative;
-            top: -8px;
+			content: '';
+			display: inline-block;
+			border-bottom: 2px solid white;
+			width: 0px;
+			position: relative;
+			top: -8px;
 			-webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
-    		transition: width 2s;
+			transition: width 2s;
 		}
 
 		.event-content > div:hover > .event-hover > .event-line:before,
-        .event-content > div:hover > .event-hover > .event-line:after
+		.event-content > div:hover > .event-hover > .event-line:after
 		{
 			width: 105px;
 		}
@@ -194,7 +213,7 @@ Home
 			height: 245px;
 			background-size: 100%;
 			-webkit-transition: background-size 1s; /* For Safari 3.1 to 6.0 */
-    		transition: background-size 1s;
+			transition: background-size 1s;
 		}
 
 		.article-block:hover > .article-img
@@ -205,9 +224,9 @@ Home
 		.article-block > .article-img > .article-hover
 		{
 			opacity: 0;
-		    padding-top: 100px;
-		    -webkit-transition: opacity 1s; /* For Safari 3.1 to 6.0 */
-    		transition: opacity 1s;
+			padding-top: 100px;
+			-webkit-transition: opacity 1s; /* For Safari 3.1 to 6.0 */
+			transition: opacity 1s;
 		}
 
 		.article-block:hover > .article-img > .article-hover
@@ -221,18 +240,18 @@ Home
 			width: 100%;
 			position: absolute;
 			text-align: center;
-    		bottom: -23px;
+			bottom: -23px;
 		}
 
 		.article-block > .article-description
 		{
 			width: 100%;
-		    height: 145px;
-		    padding: 15px;
-		    border: none;
+			height: 170px;
+			padding: 15px;
+			border: none;
 			overflow: hidden;
-            background-color: white;
-		    box-shadow: 3px 7px 20px rgba(0, 0, 0, 0.51);
+			background-color: white;
+			box-shadow: 3px 7px 20px rgba(0, 0, 0, 0.51);
 		}
 
 		
@@ -242,171 +261,132 @@ Home
 @endsection
 
 @section('content')
-<div class="container-fluid header-block panel-block" id="home" style="background-image:url({!! asset('amadeo/img/banner.jpg') !!});">
-	@include('frontend._include.article-panel')
-</div>
+@foreach ($imageContent as $list)
+	@if ($list->for == 'home.header')
+		<div class="container-fluid header-block panel-block" id="home" style="background-image:url({!! asset($list->image) !!});">
+		</div>
+		@break
+	@endif
+@endforeach
 
-<div class="container" id="about-us">
-    <div class="text-center">
-        <h2>
-            About Us
-        </h2>
-        <h3>
-            Welcome to Kingdom Financial
-        </h3>
-    </div>
-    <div class="row about-content" style="margin-top: 25px;">
-        <div class="col-md-6" style="text-align: justify; font-size: 17px;">
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.
-            </p>
-            <p>
-                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus Page Maker including. versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
-            </p>
-        </div>
-        <div class="col-md-6">
-        	<div class="image-border image-about">
-        		<div style="background-image: url('{!! asset('amadeo/img/about-us-img.jpg') !!}');">
-        			<div>
-        				
-        			</div>
-        		</div>
-        	</div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid base-color" id="our-event">
-    <div class="container text-center">
-        <h2>
-            Our Event
-        </h2>
-        <h3>
-            Lorem ipsum dolor sit amet, utinam iriure eam ex, has ei audire volutpat. Lorem mollis consequat vix id, ad quando officiis pri, ei est tempor alterum assentior. Possit iriure equidem no mel, quo ei animal admodum. Mei tritani apeirian adversarium te, cum at commune placerat, ut qui dicunt pertinacia. Vide splendide ad mel, sit id persius meliore. Eu vel oportere prodesset, vim erant dictas ex. An has vide minim hendrerit. An vis quando ignota, nam ne timeam feugait delicata, usu erat justo id. Ne novum legimus conceptam mel, fugit appetere antiopam te cum. His an laudem quidam, vero sonet periculis vim ei, pri an dolor populo. Pri tollit deseruisse id.
-        </h3>
-    </div>
-    <div class="row event-content">
-        <!-- dynamic data -->
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-1.png') !!})">
-            <div class="event-hover">
-                <div class="event-line">
-                    Surabaya
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-2.png') !!})">
-            <div class="event-hover">
-                <div class="event-line">
-                    Jakarta
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-3.png') !!})">
-            <div class="event-hover">
-                <div class="event-line">
-                    Bandung
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-4.png') !!})">
-            <div class="event-hover">
-                <div class="event-line">
-                    Semarang
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-5.png') !!})">
-            <div class="event-hover">
-                <div class="event-line">
-                    Yogyakarta
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-xs-6" style="background-image: url({!! asset('amadeo/img/our-event-img-6.png') !!})">
-            <div class="event-hover">
-                <div class="event-line">
-                    Denpasar
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="text-center">
-        <a class="button-link" href="#more">
-            More
-        </a>
-    </div>
-</div>
-<div class="container" id="article">
-    <div class="text-center">
-        <h2>
-            Article
-        </h2>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="article-block">
-                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-1.png') !!})">
-                    <div class="article-hover">
-                        + View Article
-                    </div>
-                    <div class="article-more">
-                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-                    </div>
-                </div>
-                <div class="article-description">
-                    <h4>
-                        8 Resiko Asuransi Pendidikan
-                    </h4>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="article-block">
-                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-2.png') !!})">
-                    <div class="article-hover">
-                        + View Article
-                    </div>
-                    <div class="article-more">
-                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-                    </div>
-                </div>
-                <div class="article-description">
-                    <h4>
-                        Tips Mencari Asuransi
-                    </h4>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="article-block">
-                <div class="article-img" style="background-image: url({!! asset('amadeo/img/article-3.png') !!})">
-                    <div class="article-hover">
-                        + View Article
-                    </div>
-                    <div class="article-more">
-                        <img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/>
-                    </div>
-                </div>
-                <div class="article-description">
-                    <h4>
-                        Kenali Modus Penipuan Investasi
-                    </h4>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="text-center">
-        <a class="button-link" href="#more">
-            More
-        </a>
-    </div>
-</div>
+@include('frontend._include.article-panel')
+
+@foreach ($content as $list)
+	@if ($list->for == 'about')
+		<div class="container" id="about-us">
+			<div class="text-center">
+				<h2 class="line-title">
+					{!! $list->title !!}
+				</h2>
+				<h3>
+					{!! $list->subtitle !!}
+				</h3>
+				{!! $list->description !!}
+			</div>
+			<div class="row about-content" style="margin-top: 25px;">
+				<div class="col-md-6" style="text-align: justify; font-size: 17px;">
+					{!! $list->description !!}
+				</div>
+				<div class="col-md-6">
+					@foreach ($imageContent as $list)
+						@if ($list->for == 'home.about')
+							<div class="image-border image-about">
+								<div style="background-image: url('{!! asset($list->image) !!}');">
+									<div>
+										
+									</div>
+								</div>
+							</div>
+							@break
+						@endif
+					@endforeach
+				</div>
+			</div>
+		</div>
+
+		@break
+	@endif
+@endforeach
+
+@foreach ($content as $list)
+	@if ($list->for == 'event')
+		<div class="container-fluid base-color" id="our-event">
+			<div class="container text-center">
+				<h2>
+					{!! $list->title !!}
+				</h2>
+				<h3>
+					{!! $list->subtitle !!}
+				</h3>
+				{!! $list->description !!}
+			</div>
+			<div class="row event-content">
+				@foreach ($event as $list)
+					@php $eventImage   = App\EventImage::where('id_event', $list->id )->orderBy('priority', 'DESC')->first(); @endphp
+					<div class="col-md-4 col-xs-6" style="background-image: url({{ asset($eventImage['image']) }})">
+						<div class="event-hover">
+							<div class="event-line">
+								<a href="{{ route('event.detail', ['slug' => $list->slug ]) }}">{!! $list->name !!}</a>
+							</div>
+						</div>
+					</div>
+				@endforeach
+				
+			</div>
+			<div class="text-center">
+				<a class="button-link" href="{{ route('event') }}">
+					More
+				</a>
+			</div>
+		</div>
+		@break
+	@endif
+@endforeach
+
+
+@foreach ($content as $list)
+	@if ($list->for == 'article')
+		<div class="container" id="article">
+			<div class="text-center">
+				<h2>
+					{!! $list->title !!}
+				</h2>
+				<h3>
+					{!! $list->subtitle !!}
+				</h3>
+				{!! $list->description !!}
+			</div>
+			<div class="row">
+				@foreach ($article as $list)
+				<div class="col-md-4">
+					<div class="article-block">
+						<div class="article-img" style="background-image: url({!! asset($list->image) !!})">
+							<div class="article-hover">
+								<a href="{{ route('article.detail', ['category' => $list->category, 'slug' => $list->slug]) }}">+ View Article</a>
+							</div>
+							<div class="article-more">
+								<a href="{{ route('article.detail', ['category' => $list->category, 'slug' => $list->slug]) }}"><img src="{!! asset('amadeo/img/more-img.png') !!}" style="width: 45px;"/></a>
+							</div>
+						</div>
+						<div class="article-description">
+							<h4>
+								{!! $list->name !!}
+							</h4>
+							{!! $list->short_description !!}
+						</div>
+					</div>
+				</div>
+				@endforeach
+			</div>
+			<div class="text-center">
+				<a class="button-link" href="{!! route('article') !!}">
+					More
+				</a>
+			</div>
+		</div>
+		@break
+	@endif
+@endforeach
+
+		
 @endsection

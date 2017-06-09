@@ -19,6 +19,7 @@ class CreateGallery extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->text('short_description')->nullable();
+            $table->text('image');
             $table->date('date');
             $table->integer('priority')->default(0);
             $table->string('meta_title')->nullable();

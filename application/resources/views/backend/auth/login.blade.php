@@ -18,7 +18,7 @@
 
   <body class="login">
     <div>
-    @if(Session::has('filedLogin'))
+    @if(Session::has('failed'))
       <script>
       window.setTimeout(function() {
         $(".alert-danger").fadeTo(700, 0).slideUp(700, function(){
@@ -31,7 +31,7 @@
           <div class="alert alert-danger alert-dismissible fade in" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
             </button>
-            <strong>{{ Session::get('filedLogin') }}</strong>
+            <strong>{{ Session::get('failed') }}</strong>
           </div>
         </div>
       </div>
@@ -40,12 +40,12 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action="{{ route('login') }}" method="POST">
+            <form action="{{ route('admin.login') }}" method="POST">
               <h1>Login Form</h1>
               {{ csrf_field() }}
-              <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                <input name="email" type="text" class="form-control" placeholder="Email" value="{{ old('email') }}">
-                @if ($errors->has('email'))
+              <div class="form-group has-feedback {{ $errors->has('username') ? 'has-error' : '' }}">
+                <input name="username" type="text" class="form-control" placeholder="Username" value="{{ old('username') }}">
+                @if ($errors->has('username'))
                   <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 @endif
               </div>

@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->boolean('active')->default(0);
             $table->boolean('access')->default(0);
             $table->text('permission')->nullable();
+            $table->integer('actor')->default(0);
+            $table->text('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

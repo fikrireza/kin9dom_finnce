@@ -19,6 +19,7 @@ class CreateArticleCategory extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->text('short_description')->nullable();
+            $table->text('image')->nullable();
             $table->text('logo')->nullable();
             $table->integer('priority')->default(0);
             $table->string('meta_title')->nullable();

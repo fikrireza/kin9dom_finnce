@@ -1,29 +1,37 @@
 @extends('frontend._layout')
 
+@section('meta')
+<meta property="og:title" content="{{ $meta->meta_title }}" />
+<meta property="og:description " content="{{ $meta->meta_description }}" />
+<meta property="og:type" content="website" />
+<meta name="keywords" content="{{ $meta->meta_keyword }}">
+<meta property="og:url" content="{{ $meta->meta_url }}" />
+<meta property="og:image" content="{{ $meta->meta_image }}" />
+@endsection
+
 @section('title')
 Gallery
 @endsection
 
 @section('script')
 <script type="text/javascript">
-	$(function(){
-		$('.btn-expand').click(function(event) {
-			if($(this).hasClass('active'))
-			{
-				$('.btn-expand').removeClass('active');
-				$('.content-expand').removeClass('active');
-			}
-			else
-			{
-				$('.btn-expand').removeClass('active');
-				$('.content-expand').removeClass('active');
-
-				$(this).addClass('active');
-				$(this).parent().next().addClass('active');
-			}
-			
+	$(function() {
+		var startPage = 2;
+		$(".more-link").click(function(){
+		    $.ajax({url: "{{ route('gallery.more') }}/" + startPage, success: function(result){
+		        if(result == '')
+		        {
+		        	$(".more-link").remove();
+		        }
+		        else
+		        {
+		        	$(".append").append(result);
+			        startPage++;
+		        }
+		    }});
 		});
 	});
+    
 </script>
 @endsection
 
@@ -126,7 +134,7 @@ Gallery
 
 		.gallery-content
 		{
-			margin-bottom: 120px;
+			/*margin-bottom: 120px;*/
 		}
 
 		.gallery-info > .gallery-box
@@ -234,38 +242,54 @@ Gallery
 @endsection
 
 @section('content')
-<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('amadeo/img/banner-event.jpg') !!});">
-</div>
-<div class="container-fluid padding-zero">                  
-	<ol class="breadcrumb2 base-color">
-		<li><a href="{!! route('home') !!}">Home</a></li>
-		<li class="active">Gallery</li>        
-	</ol>
+@foreach ($imageContent as $list)
+	@if ($list->for == 'gallery.header')
+		<div class="container-fluid header-block" id="home" style="background-image:url({!! asset($list->image) !!});">
+		</div>
+		@break
+	@endif
+@endforeach
+<div class="base-color"> 
+	<div class="container">
+		<ol class="breadcrumb2 margin-zero">
+			<li><a href="{!! route('home') !!}">Home</a></li>
+			<li class="active">Gallery</li>          
+		</ol>
+	</div>                 
 </div>
 <div class="panel-block">
 	<div class="container" id="gallery">
 		<div class="text-center">
-			<h2 class="line-title">
-				Gallery
-			</h2>
-			<h3>
-				Welcome to Kingdom Financial
-			</h3>
+			@foreach ($content as $list)
+				@if ($list->for == 'gallery')
+			        <h2 class="line-title">
+						{!! $list->title !!}
+					</h2>
+					<h3>
+						{!! $list->subtitle !!}
+					</h3>
+					{!! $list->description !!}
+	        		@break
+				@endif
+			@endforeach
 		</div>
-		<div class="row">
+		<div class="row append">
+			@foreach ($gallery as $list)
 			<div class="col-md-4">
 				<div class="gallery-album image-border center-block">
-					<div style="background-image: url('{!! asset('amadeo/img/our-event-img-1.png') !!}');">
+					<div style="background-image: url('{!! asset($list->image) !!}');">
 						<div class="text-center gallery-info">
 							<div class="gallery-box">
 								<div>
 									
 								</div>
 							</div>
-							<h4>Smart Insurance</h4>
-							<p class="date">20 Oktober 2014</p>
-							<p class="description">Lorem ipsum dolor sit amet, ex eos suscipit iudicabit.</p>
-							<a href="{!! route('gallery.detail', ['slug' => 'smart']) !!}" class="view-more">
+							<h4>{!! $list->name !!}</h4>
+							<p class="date">{!! date('d F Y', strtotime($list->date)) !!}</p>
+							<div class="description">
+								{!! $list->short_description !!}
+							</div>
+							<a href="{!! route('gallery.detail', ['slug' => $list->slug]) !!}" class="view-more">
 								<img src="{!! asset('amadeo/img/loop.png') !!}"><br>
 								View Detail
 							</a>
@@ -273,170 +297,11 @@ Gallery
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="gallery-album image-border center-block">
-					<div style="background-image: url('{!! asset('amadeo/img/our-event-img-2.png') !!}');">
-						<div class="text-center gallery-info">
-							<div class="gallery-box">
-								<div>
-									
-								</div>
-							</div>
-							<h4>Smart Insurance</h4>
-							<p class="date">20 Oktober 2014</p>
-							<p class="description">Lorem ipsum dolor sit amet, ex eos suscipit iudicabit.</p>
-							<a href="{!! route('gallery.detail', ['slug' => 'smart']) !!}" class="view-more">
-								<img src="{!! asset('amadeo/img/loop.png') !!}"><br>
-								View Detail
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="gallery-album image-border center-block">
-					<div style="background-image: url('{!! asset('amadeo/img/our-event-img-3.png') !!}');">
-						<div class="text-center gallery-info">
-							<div class="gallery-box">
-								<div>
-									
-								</div>
-							</div>
-							<h4>Smart Insurance</h4>
-							<p class="date">20 Oktober 2014</p>
-							<p class="description">Lorem ipsum dolor sit amet, ex eos suscipit iudicabit.</p>
-							<a href="{!! route('gallery.detail', ['slug' => 'smart']) !!}" class="view-more">
-								<img src="{!! asset('amadeo/img/loop.png') !!}"><br>
-								View Detail
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 center-block">
-				<div class="gallery-album image-border center-block">
-					<div style="background-image: url('{!! asset('amadeo/img/our-event-img-4.png') !!}');">
-						<div class="text-center gallery-info">
-							<div class="gallery-box">
-								<div>
-									
-								</div>
-							</div>
-							<h4>Smart Insurance</h4>
-							<p class="date">20 Oktober 2014</p>
-							<p class="description">Lorem ipsum dolor sit amet, ex eos suscipit iudicabit.</p>
-							<a href="{!! route('gallery.detail', ['slug' => 'smart']) !!}" class="view-more">
-								<img src="{!! asset('amadeo/img/loop.png') !!}"><br>
-								View Detail
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="gallery-album image-border center-block">
-					<div style="background-image: url('{!! asset('amadeo/img/our-event-img-5.png') !!}');">
-						<div class="text-center gallery-info">
-							<div class="gallery-box">
-								<div>
-									
-								</div>
-							</div>
-							<h4>Smart Insurance</h4>
-							<p class="date">20 Oktober 2014</p>
-							<p class="description">Lorem ipsum dolor sit amet, ex eos suscipit iudicabit.</p>
-							<a href="{!! route('gallery.detail', ['slug' => 'smart']) !!}" class="view-more">
-								<img src="{!! asset('amadeo/img/loop.png') !!}"><br>
-								View Detail
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="gallery-album image-border center-block">
-					<div style="background-image: url('{!! asset('amadeo/img/our-event-img-6.png') !!}');">
-						<div class="text-center gallery-info">
-							<div class="gallery-box">
-								<div>
-									
-								</div>
-							</div>
-							<h4>Smart Insurance</h4>
-							<p class="date">20 Oktober 2014</p>
-							<p class="description">Lorem ipsum dolor sit amet, ex eos suscipit iudicabit.</p>
-							<a href="{!! route('gallery.detail', ['slug' => 'smart']) !!}" class="view-more">
-								<img src="{!! asset('amadeo/img/loop.png') !!}"><br>
-								View Detail
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 center-block">
-				<div class="gallery-album image-border center-block">
-					<div style="background-image: url('{!! asset('amadeo/img/our-event-img-1.png') !!}');">
-						<div class="text-center gallery-info">
-							<div class="gallery-box">
-								<div>
-									
-								</div>
-							</div>
-							<h4>Smart Insurance</h4>
-							<p class="date">20 Oktober 2014</p>
-							<p class="description">Lorem ipsum dolor sit amet, ex eos suscipit iudicabit.</p>
-							<a href="{!! route('gallery.detail', ['slug' => 'smart']) !!}" class="view-more">
-								<img src="{!! asset('amadeo/img/loop.png') !!}"><br>
-								View Detail
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="gallery-album image-border center-block">
-					<div style="background-image: url('{!! asset('amadeo/img/our-event-img-2.png') !!}');">
-						<div class="text-center gallery-info">
-							<div class="gallery-box">
-								<div>
-									
-								</div>
-							</div>
-							<h4>Smart Insurance</h4>
-							<p class="date">20 Oktober 2014</p>
-							<p class="description">Lorem ipsum dolor sit amet, ex eos suscipit iudicabit.</p>
-							<a href="{!! route('gallery.detail', ['slug' => 'smart']) !!}" class="view-more">
-								<img src="{!! asset('amadeo/img/loop.png') !!}"><br>
-								View Detail
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="gallery-album image-border center-block">
-					<div style="background-image: url('{!! asset('amadeo/img/our-event-img-3.png') !!}');">
-						<div class="text-center gallery-info">
-							<div class="gallery-box">
-								<div>
-									
-								</div>
-							</div>
-							<h4>Smart Insurance</h4>
-							<p class="date">20 Oktober 2014</p>
-							<p class="description">Lorem ipsum dolor sit amet, ex eos suscipit iudicabit.</p>
-							<a href="{!! route('gallery.detail', ['slug' => 'smart']) !!}" class="view-more">
-								<img src="{!! asset('amadeo/img/loop.png') !!}"><br>
-								View Detail
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>   
+			@endforeach
 		</div>
 		<div class="row gallery-content">
 			<div class="col-md-12 text-center">
-				<a href="#" class="more-link">More Gallery<br><img src="{!! asset('amadeo/img/more.png') !!}"></a>
+				<a href="#" class="more-link" onclick="return false">More Gallery<br><img src="{!! asset('amadeo/img/more.png') !!}"></a>
 			</div>
 		</div>
 	</div>

@@ -1,3 +1,9 @@
+@php
+    $website     = App\Website::first();
+    $navCategory = App\ArticleCategory::take(4)->orderBy('id', 'DESC')->orderBy('priority', 'DESC')->where('flag_publish', 1)->get();
+    $navEvent = App\Event::take(4)->orderBy('date', 'DESC')->where('flag_publish', 1)->get();
+@endphp
+
 <!DOCTYPE html>
 @yield('php')
 <html>
@@ -21,7 +27,7 @@
         @yield('style')
         <link href="{!! asset('amadeo/css/main.min.css') !!}" rel="stylesheet" type="text/css"/>
         <title>
-            Kingdom Finance - @yield('title')
+            {{ $website->website }} - @yield('title')
         </title>
     </head>
     <body>
@@ -62,20 +68,34 @@
                         Program
                     </a>
                 </li> -->
-                <li>
+                <li class="dropdown">
                     <a href="{!! route('event') !!}">
                         Event
                     </a>
+                    <div class="dropdown-content">
+                        @foreach($navEvent as $list)
+                        <a href="{!! route('article.category', ['category' => $list->slug]) !!}">
+                            {!! $list->name !!}
+                        </a>
+                        @endforeach
+                    </div>
                 </li>
                 <li>
                     <a href="{!! route('gallery') !!}">
                         Gallery
                     </a>
                 </li>
-                <li>
+                <li class="dropdown">
                     <a href="{!! route('article') !!}">
                         Article
                     </a>
+                    <div class="dropdown-content">
+                        @foreach($navCategory as $list)
+                        <a href="{!! route('article.category', ['category' => $list->slug]) !!}">
+                            {!! $list->name !!}
+                        </a>
+                        @endforeach
+                    </div>
                 </li>
                 <li>
                     <a href="#contact">

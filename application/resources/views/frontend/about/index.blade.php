@@ -1,5 +1,14 @@
 @extends('frontend._layout')
 
+@section('meta')
+<meta property="og:title" content="{{ $meta->meta_title }}" />
+<meta property="og:description " content="{{ $meta->meta_description }}" />
+<meta property="og:type" content="website" />
+<meta name="keywords" content="{{ $meta->meta_keyword }}">
+<meta property="og:url" content="{{ $meta->meta_url }}" />
+<meta property="og:image" content="{{ $meta->meta_image }}" />
+@endsection
+
 @section('title')
 About
 @endsection
@@ -72,7 +81,7 @@ About
 
 		#about-us
 		{
-		    padding-bottom: 120px;
+		    /*padding-bottom: 120px;*/
 		}
 
 		.image-about
@@ -138,87 +147,105 @@ About
 @endsection
 
 @section('content')
-<div class="container-fluid header-block" id="home" style="background-image:url({!! asset('amadeo/img/banner-about.jpg') !!});">
-</div>
-<div class="container-fluid padding-zero">                  
-	<ol class="breadcrumb2 base-color">
-		<li><a href="{!! route('home') !!}">Home</a></li>
-		<li class="active">About Us</li>        
-	</ol>
+@foreach ($imageContent as $list)
+	@if ($list->for == 'about.header')
+		<div class="container-fluid header-block panel-block" id="home" style="background-image:url({!! asset($list->image) !!});">
+		</div>
+		@break
+	@endif
+@endforeach
+<div class="base-color"> 
+	<div class="container">
+		<ol class="breadcrumb2 margin-zero">
+			<li><a href="{!! route('home') !!}">Home</a></li>
+			<li class="active">About Us</li>        
+		</ol>
+	</div>                 
 </div>
 <div class="panel-block">
 	<div class="container" id="about-us">
 	    <div class="text-center">
-	        <h2 class="line-title">
-	            About Us
-	        </h2>
-	        <h3>
-	            Welcome to Kingdom Financial
-	        </h3>
+	    	@foreach ($content as $list)
+				@if ($list->for == 'about')
+			        <h2 class="line-title">
+						{!! $list->title !!}
+					</h2>
+					<h3>
+						{!! $list->subtitle !!}
+					</h3>
+					{!! $list->description !!}
+	        		@break
+				@endif
+			@endforeach
 	    </div>
 	    <div class="row about-content">
 	    	<div class="col-md-6 col-md-push-6">
-	        	<div class="image-border image-about">
-	        		<div style="background-image: url('{!! asset('amadeo/img/about-us2-img.jpg') !!}');">
-	        			<div>
-	        				
-	        			</div>
-	        		</div>
-	        	</div>
+	    		@foreach ($imageContent as $list)
+					@if ($list->for == 'home.about')
+			        	<div class="image-border image-about">
+			        		<div style="background-image: url('{!! asset($list->image) !!}');">
+			        			<div>
+			        				
+			        			</div>
+			        		</div>
+			        	</div>
+	        			@break
+					@endif
+				@endforeach
 	        </div>
 
 	        <div class="col-md-6 col-md-pull-6" style="text-align: justify; font-size: 17px;">
-	            <h4 class="arcordion">
-	            	<div class="btn-expand active hidden-xs hidden-sm">
-	            		<span class="fa-stack">
-							<i class="fa fa-circle-thin fa-stack-2x"></i>
-							<i class="fa fa-caret-down fa-stack-1x"></i>
-						</span>
-	            	</div>
-	            	History
-	            </h4>
-	            <div class="content-expand base-color-lighter active">
-	            	<p>
-	            		Lorem ipsum dolor sit amet, cu has audiam legendos accusata, accusata atomorum vim at, nec simul quodsi reprehendunt te. No cum facete dictas, alia paulo duo at. Ex utamur numquam delectus per, in nec vero timeam docendi, zril fabellas incorrupte ad pri. Summo appareat ea est, has nullam conclusionemque no, vis sale bonorum consequuntur an. Ea ceteros civibus sed, duo in commodo debitis. Has an primis ancillae, ei sonet meliore definiebas eam.
-	            	</p>
-	            	<p>
-	            		An sumo laboramus mel, te primis pertinax eos, duo eros ullum falli id. Mea eu ornatus scaevola, solet mollis vis ea. Eu has diam disputationi, vix ei eirmod inimicus persequeris. Ea ius quis ponderum, eum ut agam doctus senserit, latine iuvaret lucilius ex eam. Ea sed percipitur honestatis, postea copiosae conclusionemque at mea.
-	            	</p>
-	            </div>
-	            <h4 class="arcordion">
-	            	<div class="btn-expand hidden-xs hidden-sm">
-	            		<span class="fa-stack">
-							<i class="fa fa-circle-thin fa-stack-2x"></i>
-							<i class="fa fa-caret-down fa-stack-1x"></i>
-						</span>
-	            	</div>
-	            	Visi
-	            </h4>
-	            <div class="content-expand base-color-lighter">
-	            	<p>
-	            		Lorem ipsum dolor sit amet, cu has audiam legendos accusata, accusata atomorum vim at, nec simul quodsi reprehendunt te. No cum facete dictas, alia paulo duo at. Ex utamur numquam delectus per, in nec vero timeam docendi, zril fabellas incorrupte ad pri. Summo appareat ea est, has nullam conclusionemque no, vis sale bonorum consequuntur an. Ea ceteros civibus sed, duo in commodo debitis. Has an primis ancillae, ei sonet meliore definiebas eam.
-	            	</p>
-	            	<p>
-	            		An sumo laboramus mel, te primis pertinax eos, duo eros ullum falli id. Mea eu ornatus scaevola, solet mollis vis ea. Eu has diam disputationi, vix ei eirmod inimicus persequeris. Ea ius quis ponderum, eum ut agam doctus senserit, latine iuvaret lucilius ex eam. Ea sed percipitur honestatis, postea copiosae conclusionemque at mea.
-	            	</p>
-	            </div>
-	            <h4 class="arcordion">
-	            	<div class="btn-expand hidden-xs hidden-sm">
-	            		<span class="fa-stack">
-							<i class="fa fa-circle-thin fa-stack-2x"></i>
-							<i class="fa fa-caret-down fa-stack-1x"></i>
-						</span>
-	            	</div>
-	            	Misi
-	            </h4>
-	            <div class="content-expand base-color-lighter">
-	            	<p>
-	            		Lorem ipsum dolor sit amet, cu has audiam legendos accusata, accusata atomorum vim at, nec simul quodsi reprehendunt te. No cum facete dictas, alia paulo duo at. Ex utamur numquam delectus per, in nec vero timeam docendi, zril fabellas incorrupte ad pri. Summo appareat ea est, has nullam conclusionemque no, vis sale bonorum consequuntur an. Ea ceteros civibus sed, duo in commodo debitis. Has an primis ancillae, ei sonet meliore definiebas eam.
-	            	</p>
-	            	<p>
-	            		An sumo laboramus mel, te primis pertinax eos, duo eros ullum falli id. Mea eu ornatus scaevola, solet mollis vis ea. Eu has diam disputationi, vix ei eirmod inimicus persequeris. Ea ius quis ponderum, eum ut agam doctus senserit, latine iuvaret lucilius ex eam. Ea sed percipitur honestatis, postea copiosae conclusionemque at mea.
-	            	</p>
-	            </div>
+	            @foreach ($content as $list)
+						@if ($list->for == 'about.history')
+			            <h4 class="arcordion">
+			            	<div class="btn-expand active hidden-xs hidden-sm">
+			            		<span class="fa-stack">
+									<i class="fa fa-circle-thin fa-stack-2x"></i>
+									<i class="fa fa-caret-down fa-stack-1x"></i>
+								</span>
+			            	</div>
+			            	{!! $list->title !!}
+			            </h4>
+			            <div class="content-expand base-color-lighter active">
+			            	{!! $list->description !!}
+			            </div>
+		            	@break
+					@endif
+				@endforeach
+				@foreach ($content as $list)
+						@if ($list->for == 'about.visi')
+			            <h4 class="arcordion">
+			            	<div class="btn-expand hidden-xs hidden-sm">
+			            		<span class="fa-stack">
+									<i class="fa fa-circle-thin fa-stack-2x"></i>
+									<i class="fa fa-caret-down fa-stack-1x"></i>
+								</span>
+			            	</div>
+			            	{!! $list->title !!}
+			            </h4>
+			            <div class="content-expand base-color-lighter">
+			            	{!! $list->description !!}
+			            </div>
+		            	@break
+					@endif
+				@endforeach
+				@foreach ($content as $list)
+						@if ($list->for == 'about.misi')
+			            <h4 class="arcordion">
+			            	<div class="btn-expand hidden-xs hidden-sm">
+			            		<span class="fa-stack">
+									<i class="fa fa-circle-thin fa-stack-2x"></i>
+									<i class="fa fa-caret-down fa-stack-1x"></i>
+								</span>
+			            	</div>
+			            	{!! $list->title !!}
+			            </h4>
+			            <div class="content-expand base-color-lighter">
+			            	{!! $list->description !!}
+			            </div>
+		            	@break
+					@endif
+				@endforeach
 	        </div>
 	        
 	    </div>

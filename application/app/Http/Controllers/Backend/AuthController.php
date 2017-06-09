@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\User;
+use App\User;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Session;
+
+use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
@@ -28,7 +30,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password, 'active' => 1])) {
-            return redirect('/cms/menu');
+            return redirect()->route('admin.home');
         } else {
             $query = User::where('username', $request->username);
             $find  = $query->first();
@@ -77,66 +79,24 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $messages = '';
-        $valid    = 0;
-        if ($request->name == '') {
-            $messages = $messages . ' fullname and nickname must fill,';
-            $valid++;
-        }
+        
+        $users = new User;
 
-        if ($request->username == '') {
-            $messages = $messages . ' username must fill,';
-            $valid++;
-        }
+        $this->validate($request, [
+            'username' => 'required|unique:users,username|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:8',
+        ]);
 
-        $checkUsername = User::where('username', $request->username)->count();
-        if ($checkUsername) {
-            $messages = $messages . ' username already exist,';
-            $valid++;
-        }
+        $users->username = $request->username;
+        $users->email    = $request->email;
+        $users->password = bcrypt($request->password);
+        $users->name     = $request->name;
 
-        if ($request->email == '') {
-            $messages = $messages . ' email must fill,';
-            $valid++;
-        }
+        $users->save();
 
-        $checkEmail = User::where('email', $request->email)->count();
-        if ($checkEmail) {
-            $messages = $messages . ' email already exist,';
-            $valid++;
-        }
-
-        if ($request->password == '') {
-            $messages = $messages . ' password must fill,';
-            $valid++;
-        }
-
-        if ($request->password != $request->password_confirmation) {
-            $messages = $messages . ' password not match,';
-            $valid++;
-        }
-
-        if ($valid) {
-            Session::flash('failed', substr($messages, 0, -1));
-            return view('cms.auth.register', [
-                'name'     => $request->name,
-                'username' => $request->username,
-                'email'    => $request->email,
-            ]);
-        } else {
-            $users = new User;
-
-            $users->username = $request->username;
-            $users->email    = $request->email;
-            $users->password = bcrypt($request->password);
-            $users->name     = $request->name;
-
-            $users->save();
-
-            Session::flash('success', 'Data has been added, please info to owner website');
-            return redirect()->route('admin');
-        }
-
+        Session::flash('success', 'Data has been added, please info to owner website');
+        return redirect()->route('admin');
     }
 
     public function active($id, Request $request)

@@ -16,8 +16,9 @@ class CreateEventImage extends Migration
         Schema::create('amd_event_image', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_event');
-            $table->integer('title');
+            $table->string('title');
             $table->text('image');
+            $table->integer('priority')->default(0);
             $table->integer('actor');
             $table->boolean('flag_publish')->default(1);
             $table->timestamps();

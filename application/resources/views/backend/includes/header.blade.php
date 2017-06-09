@@ -9,12 +9,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <img src="" alt="">Welcome, User
+            <img src="{{ asset(Auth::user()->avatar != '' ? Auth::user()->avatar : 'backend/images/user.png') }}" alt="">Welcome, {{ Auth::user()->name }}
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
-            <li><a href=""> Profile</a></li>
-            <li><a href=""><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+            <li><a href="{{ route('home') }}"> Go to Website</a></li>
+            <li><a href="{{ route('admin.user.edit', ['id' => Auth::id()]) }}"> Profile</a></li>
+            <li><a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
           </ul>
         </li>
       </ul>
