@@ -74,7 +74,7 @@
                     </a>
                     <div class="dropdown-content">
                         @foreach($navEvent as $list)
-                        <a href="{!! route('article.category', ['category' => $list->slug]) !!}">
+                        <a href="{!! route('event.detail', ['slug' => $list->slug]) !!}">
                             {!! $list->name !!}
                         </a>
                         @endforeach

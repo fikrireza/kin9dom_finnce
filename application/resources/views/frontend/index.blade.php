@@ -281,7 +281,6 @@ Home
 				<h3>
 					{!! $list->subtitle !!}
 				</h3>
-				{!! $list->description !!}
 			</div>
 			<div class="row about-content" style="margin-top: 25px;">
 				<div class="col-md-6" style="text-align: justify; font-size: 17px;">

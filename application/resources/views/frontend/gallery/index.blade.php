@@ -234,7 +234,7 @@ Gallery
 
 		.gallery-info:hover > .view-more
 		{
-			transform: translateY(77px);
+			transform: translateY(45px);
 			opacity: 1;
 		}
 	}

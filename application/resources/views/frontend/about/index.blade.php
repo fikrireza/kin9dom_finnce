@@ -173,7 +173,6 @@ About
 					<h3>
 						{!! $list->subtitle !!}
 					</h3>
-					{!! $list->description !!}
 	        		@break
 				@endif
 			@endforeach
