@@ -31,6 +31,7 @@ class UserController extends Controller
     {
     	if(Auth::user()->access != 0)
     	{
+            Session::flash('warning', 'Access Denied');
     		return redirect()->route('admin');
     	}
 
@@ -41,6 +42,7 @@ class UserController extends Controller
     {
     	if(Auth::user()->access != 0)
     	{
+            Session::flash('warning', 'Access Denied');
     		return redirect()->route('admin');
     	}
 
@@ -82,6 +84,7 @@ class UserController extends Controller
         
         $index->save();
 
+        Session::flash('success', 'Data Has Been Added');
     	return redirect()->route('admin.user');
     }
 
@@ -89,6 +92,7 @@ class UserController extends Controller
     {
     	if($id != Auth::id() && Auth::user()->access != 0)
     	{
+            Session::flash('warning', 'Access Denied');
     		return redirect()->route('admin');
     	}
 
@@ -100,6 +104,7 @@ class UserController extends Controller
     {
     	if($id != Auth::id() && Auth::user()->access != 0)
     	{
+            Session::flash('warning', 'Access Denied');
     		return redirect()->route('admin');
     	}
 
@@ -154,6 +159,7 @@ class UserController extends Controller
         
         $index->save();
 
+        Session::flash('success', 'Data Has Been Updated');
     	return redirect()->route('admin.user');
     }
 
@@ -161,11 +167,13 @@ class UserController extends Controller
     {
     	if(Auth::user()->access != 0)
     	{
+            Session::flash('warning', 'Access Denied');
     		return redirect()->route('admin');
     	}
 
     	User::destroy($id);
 
+        Session::flash('success', 'Data Has Been Deleted');
     	return redirect()->route('admin.user');
     }
 
@@ -173,22 +181,46 @@ class UserController extends Controller
     {
     	if(Auth::user()->access != 0)
     	{
+            Session::flash('warning', 'Access Denied');
     		return redirect()->route('admin');
     	}
 
     	if($request->action == 'delete')
     	{
     		User::destroy($request->id);
+            Session::flash('success', 'Data Selected Has Been Deleted');
     	}
     	else if($request->action == 'enable')
     	{
     		$index = User::whereIn('id', $request->id)->update(['active' => 1]);
+            Session::flash('success', 'Data Selected Has Been Actived');
     	}
     	else if($request->action == 'disable')
     	{
     		$index = User::whereIn('id', $request->id)->update(['active' => 0]);
+            Session::flash('success', 'Data Selected Has Been Inactived');
     	}
     	
     	return redirect()->route('admin.user');
+    }
+
+    public function status($id, $action)
+    {
+        $index = User::find($id);
+
+        $index->active = $action;
+
+        $index->save();
+
+        if($action == 1)
+        {
+            Session::flash('success', 'Data Has Been Actived');
+        }
+        else
+        {
+            Session::flash('success', 'Data Has Been Inactived');
+        }
+
+        return redirect()->route('admin.user');
     }
 }

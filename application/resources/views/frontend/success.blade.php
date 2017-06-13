@@ -104,11 +104,17 @@
                 </li>
             </ul>
         </nav>
-        @yield('content')
+        
+        <div style="height: 700px; padding-top: 70px;">
+        	<p>
+	        	Thank You
+	        </p>
+        </div>
+        
 
-		@include('frontend._include.contact')
+		
         <div class="container-fluid text-center base-color-darkest" id="footer">
-            © Copyright 2017 All Rights Reserved | Developer By &nbsp; <a href="https://amadeo.id"><img src="{{ asset('amadeo/img/amadeo.png') }}" height="25" /></a>
+            © Copyright 2017 All Rights Reserved
         </div>
     </body>
 </html>

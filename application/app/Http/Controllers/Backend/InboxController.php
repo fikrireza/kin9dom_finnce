@@ -45,19 +45,25 @@ class InboxController extends Controller
 
         $index->save();
 
-    	return redirect()->route('contact.success');
+    	Session::flash('success', 'Thank You');
+        return redirect::back();
     }
 
     public function delete($id)
     {
     	Contact::destroy($id);
 
+        Session::flash('success', 'Data Has Been Deleted');
     	return redirect()->route('admin.inbox');
     }
 
     public function action(Request $request)
     {
-   		Contact::destroy($request->id);
+        if(isset($request->id))
+        {
+       		Contact::destroy($request->id);
+            Session::flash('success', 'Data Selected Has Been Deleted');
+        }
     	
     	return redirect()->route('admin.inbox');
     }

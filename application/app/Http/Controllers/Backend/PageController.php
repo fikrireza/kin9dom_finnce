@@ -46,6 +46,7 @@ class PageController extends Controller
 
         $index->save();
 
+        Session::flash('success', 'Data Has Been Updated');
     	return redirect()->route('admin.page');
     }
 
@@ -101,6 +102,7 @@ class PageController extends Controller
 
         $index->save();
 
+        Session::flash('success', 'Data Has Been Updated');
     	return redirect()->route('admin.pageImage');
     }
 }

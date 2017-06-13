@@ -6,7 +6,7 @@
 <meta property="og:type" content="website" />
 <meta name="keywords" content="{{ $meta->meta_keyword }}">
 <meta property="og:url" content="{{ $meta->meta_url }}" />
-<meta property="og:image" content="{{ $meta->meta_image }}" />
+<meta property="og:image" content="{{ asset($meta->meta_image) }}" />
 @endsection
 
 @section('title')
@@ -37,7 +37,7 @@ Home
 	{
 		margin-top: 30px;
 		margin-bottom: 30px;
-		padding: 0px 45px;
+		
 	}
 
 	.about-content > div > p
@@ -130,6 +130,7 @@ Home
 		#about-us
 		{
 			margin-top: 0px;
+			padding: 0px 45px;
 		}
 
 		.about-content > div

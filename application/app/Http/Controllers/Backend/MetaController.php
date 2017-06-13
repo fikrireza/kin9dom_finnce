@@ -76,6 +76,7 @@ class MetaController extends Controller
 
         $index->save();
 
+        Session::flash('success', 'Data Selected Has Been Updated');
     	return redirect()->route('admin.meta');
     }
 }

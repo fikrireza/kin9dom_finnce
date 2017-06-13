@@ -6,7 +6,7 @@
 <meta property="og:type" content="website" />
 <meta name="keywords" content="{{ $meta->meta_keyword }}">
 <meta property="og:url" content="{{ $meta->meta_url }}" />
-<meta property="og:image" content="{{ $meta->meta_image }}" />
+<meta property="og:image" content="{{ asset($meta->meta_image) }}" />
 @endsection
 
 @section('title')
@@ -45,7 +45,7 @@ Gallery
 
 	.gallery-album
 	{
-	    width: 375px;
+	    width: 100%;
         height: 290px;
 	    margin-bottom: 10px;
 	}
@@ -81,6 +81,7 @@ Gallery
 		font-family: 'Helvetica LT Std';
 	    transform: translateY(55px);
 	    font-weight: 900;
+	    padding: 0px 20px;
 	}
 
 	.gallery-info > .date
@@ -100,9 +101,10 @@ Gallery
 		font-size: 23px;
 		width: 100%;
 		transform: translateY(40px);
-	    padding: 0px 40px;
+	    padding: 0px 20px;
 	    line-height: 18px;
 	    opacity: 1;
+	    display: none;
 	}
 
 	.gallery-info > .view-more
@@ -130,6 +132,11 @@ Gallery
 		{
 			min-height: 50%;
 			position: relative;
+		}
+
+		.gallery-album
+		{
+			width: 375px;
 		}
 
 		.gallery-content
@@ -209,6 +216,7 @@ Gallery
 		    padding: 0px 40px;
 		    line-height: 18px;
 		    opacity: 0;
+		    display: inherit;
 		    transition: all 1s;
 		}
 

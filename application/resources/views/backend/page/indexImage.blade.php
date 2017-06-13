@@ -20,26 +20,29 @@
 @section('content')
 	
     <h1>Content Image Management</h1>
-	<table class="table table-striped table-bordered bulk_action" id="datatable-buttons">
-		<thead>
-			<tr>
-				<th>No.</th>
-				<th>Content For</th>
-				<th>Image</th>
-				<th>Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			@php $count=0; @endphp
-			@foreach($index as $list)
-			<tr>
-				<td>{{ ++$count }}</td>
-				<td>{{ $list->for }}</td>
-				<td>@if($list->image != '')<img src="{{ asset($list->image) }}" style="height: 100px;">@endif</td>
-				<td><a href="{{ route('admin.pageImage.edit', ['id' => $list->id]) }}"><i class="fa fa-pencil"></i></a></td>
-			</tr>
-			@endforeach
-		</tbody>
-	</table>
+	<div class="x_panel" style="overflow: auto;">
+		<table class="table table-striped table-bordered bulk_action" id="datatable-buttons">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Content For</th>
+					<th>Image</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				@php $count=0; @endphp
+				@foreach($index as $list)
+				<tr>
+					<td>{{ ++$count }}</td>
+					<td>{{ $list->for }}</td>
+					<td>@if($list->image != '')<img src="{{ asset($list->image) }}" style="height: 100px;">@endif</td>
+					<td><a href="{{ route('admin.pageImage.edit', ['id' => $list->id]) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a></td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
+	</div>
+	
 
 @endsection

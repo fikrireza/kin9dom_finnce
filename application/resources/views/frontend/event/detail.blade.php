@@ -6,7 +6,7 @@
 <meta property="og:type" content="website" />
 <meta name="keywords" content="{{ $event->meta_keyword }}">
 <meta property="og:url" content="{{ $event->meta_url }}" />
-<meta property="og:image" content="{{ $event->meta_image }}" />
+<meta property="og:image" content="{{ asset($event->meta_image) }}" />
 @endsection
 
 @section('title')
@@ -252,11 +252,11 @@ Event - {{ $event->name }}
 						<td>&nbsp;</td>
 						<td>
 							{!! $event->description !!}
-							<!-- <div class="text-center">
+							<div class="text-center">
 								<a href="#" class="btn-link base-color-darker">
 									Register Event
 								</a>
-							</div> -->
+							</div>
 						</td>
 					</tr>
 				</table>

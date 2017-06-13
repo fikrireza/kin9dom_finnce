@@ -1,7 +1,7 @@
 @php
     $website = App\Website::first();
-    $partner = App\Partner::all();
-    $social  = App\Social::all();
+    $partner = App\Partner::where('flag_publish', 1)->get();
+    $social  = App\Social::where('flag_publish', 1)->get();
 @endphp
 
 <div class="container-fluid base-color" id="contact">
@@ -30,7 +30,7 @@
                     Phone
                 </h5>
                 {!! $website->phone !!}
-                <p>
+                <!-- <p>
                     <a href="{{ $website->google_map_url }}">
                         <img src="{!! asset('amadeo/img/direction-img.png') !!}" style="height: 65px;">
                             <span style="font-size: 20px; font-weight: bold; font-family: 'Helvetica LT Std">
@@ -38,7 +38,7 @@
                             </span>
                         </img>
                     </a>
-                </p>
+                </p> -->
             </div>
             <div class="col-md-3 col-md-push-6">
                 <h5>
@@ -50,7 +50,7 @@
                     @endforeach
                 </p>
                 <h5>
-                    Office
+                    Partner
                 </h5>
                 <p>
                     @foreach($partner as $list)
@@ -59,6 +59,7 @@
                 </p>
             </div>
             <div class="col-md-6 col-md-pull-3 base-color-darker" style="padding-bottom: 20px;">
+                @include('frontend._include.messages')
                 <form class="input-message form-validation" style="padding-bottom: 10px;" method="post" action="{!! route('contact.store') !!}">
                     
                     <label for="email">
@@ -132,7 +133,7 @@
                             }
 
                             // validation phone
-                            if (phone.val() != null && !validatePhone(phone.val())) {
+                            if (phone.val() != '' && !validatePhone(phone.val())) {
                                 invalid++;
                                 phone.prev().children('.feedback').html("(Invalid Phone)");
                             } else {
