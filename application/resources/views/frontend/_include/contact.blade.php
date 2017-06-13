@@ -18,12 +18,12 @@
                 <h5>
                     Office
                 </h5>
-                {!! $website->address !!}
+                {!! isset($website->address) ? $website->address : '' !!}
 
                 <h5>
                     Phone
                 </h5>
-                {!! $website->phone !!}
+                {!! isset($website->address) ? $website->phone : '' !!}
                 <!-- <p>
                     <a href="{{ $website->google_map_url }}">
                         <img src="{!! asset('amadeo/img/direction-img.png') !!}" style="height: 65px;">
