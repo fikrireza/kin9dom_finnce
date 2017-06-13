@@ -1,11 +1,4 @@
-@php
-    $website     = App\Website::first();
-    $navCategory = App\ArticleCategory::take(4)->orderBy('id', 'DESC')->orderBy('priority', 'DESC')->where('flag_publish', 1)->get();
-    $navEvent = App\Event::take(4)->orderBy('date', 'DESC')->where('flag_publish', 1)->get();
-@endphp
-
 <!DOCTYPE html>
-@yield('php')
 <html>
     <head>
         <meta content="width=device-width, initial-scale=1.0" name="viewport"/>

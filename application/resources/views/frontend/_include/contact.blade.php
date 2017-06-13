@@ -1,9 +1,3 @@
-@php
-    $website = App\Website::first();
-    $partner = App\Partner::where('flag_publish', 1)->get();
-    $social  = App\Social::where('flag_publish', 1)->get();
-@endphp
-
 <div class="container-fluid base-color" id="contact">
     <div class="container">
         <div class="row text-center">
