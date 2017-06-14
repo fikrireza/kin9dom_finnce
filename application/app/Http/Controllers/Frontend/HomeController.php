@@ -86,7 +86,9 @@ class HomeController extends Controller
         $content      = Content::all();
         $imageContent = ImageContent::all();
         $gallery      = Gallery::where('slug', $slug)->where('flag_publish', 1)->first();
-
+        if($gallery == null){
+            return view('frontend.errors.404');
+        }
 
         return view('frontend.gallery.detail')->with(compact('content','imageContent','gallery'));
     }
@@ -113,6 +115,9 @@ class HomeController extends Controller
         $content  = Content::all();
         $imageContent = ImageContent::all();
         $categoryI = ArticleCategory::where('slug', $category)->where('flag_publish', 1)->first();
+        if($categoryI == null){
+            return view('frontend.errors.404');
+        }
         $article  = Article::join('amd_article_category', 'amd_article_category.id', '=', 'amd_article.id_article_category')->select(DB::raw('amd_article.*, amd_article_category.slug as category'))->where('id_article_category', $categoryI->id)->where('amd_article.flag_publish', 1)->paginate(12);
 
         return view('frontend.article.category')->with(compact('content','imageContent','categoryI','article'));
@@ -122,7 +127,7 @@ class HomeController extends Controller
     {
         $categoryI = ArticleCategory::where('slug', $category)->where('flag_publish', 1)->first();
         $article  = Article::join('amd_article_category', 'amd_article_category.id', '=', 'amd_article.id_article_category')->select(DB::raw('amd_article.*, amd_article_category.slug as category'))->where('id_article_category', $categoryI->id)->where('amd_article.flag_publish', 1)->skip(($page - 1) * 12)->take(12)->get();
-
+        
         return view('frontend.article.more')->with(compact('article'));
     }
 
@@ -132,7 +137,10 @@ class HomeController extends Controller
         $imageContent = ImageContent::all();
         $categoryI = ArticleCategory::where('slug', $category)->where('flag_publish', 1)->first();
         $article  = Article::where('slug', $slug)->where('flag_publish', 1)->first();
-
+        if($article == null){
+            return view('frontend.errors.404');
+        }
+        
         return view('frontend.article.detail')->with(compact('content','imageContent','categoryI','article'));
     }
 

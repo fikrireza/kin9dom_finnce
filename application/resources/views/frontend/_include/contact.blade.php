@@ -24,13 +24,8 @@
                 </h5>
                 @if($website != null)
                 {!! $website->phone !!}
-                <p>
-                {!! isset($website->address) ? $website->address : '' !!}
-
-                <h5>
-                    Phone
-                </h5>
-                {!! isset($website->address) ? $website->phone : '' !!}
+                @endif
+                
                 <!-- <p>
                     <a href="{{ $website->google_map_url }}">
                         <img src="{!! asset('amadeo/img/direction-img.png') !!}" style="height: 65px;">
@@ -39,9 +34,8 @@
                             </span>
                         </img>
                     </a>
-                </p>
                 </p> -->
-                @endif
+                
             </div>
             <div class="col-md-3 col-md-push-6">
                 <h5>
