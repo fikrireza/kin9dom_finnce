@@ -34,7 +34,12 @@
 	<h1>Inbox</h1>
 	<div class="x_panel" style="overflow: auto;">
 		<form method="post" id="action" action="{{ route('admin.inbox.action') }}" class="form-inline text-right">
-			<button type="submit" class="btn btn-success">Delete Selected</button>
+			<select class="form-control" name="action">
+				<option value="read">Set As Readed</option>
+				<option value="unread">Set As Unread</option>
+				<option value="delete">Delete</option>
+			</select>
+			<button type="submit" class="btn btn-success">Updated Selected</button>
 		</form>
 
 		<table class="table table-striped table-bordered" id="datatable-buttons">
@@ -44,6 +49,7 @@
 						<input type="checkbox" data-target="check" class="check-all" id="check-all"> <label for="check-all">Select All</label>
 					</th>
 					<th>No.</th>
+					<th>Read</th>
 					<th>Time Post</th>
 					<th>Name</th>
 					<th>Email</th>
@@ -60,13 +66,14 @@
 						<input type="checkbox" class="check" value="{{ $list->id }}" name="id[]" form="action">
 					</td>
 					<td>{{ ++$count }}</td>
+					<td>{{ $list->read == 1 ? 'Readed' : 'Unread' }}</td>
 					<td>{{ date('d F Y H:i:s', strtotime($list->created_at)) }}</td>
 					<td>{{ $list->name }}</td>
 					<td>{{ $list->email }}</td>
 					<td>{{ $list->phone }}</td>
 					<td>{{ $list->messages }}</td>
 					<td nowrap>
-						<a href="{{ route('admin.inbox.edit', ['id' => $list->id]) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+						<a href="{{ route('admin.inbox.view', ['id' => $list->id]) }}" class="btn btn-xs btn-primary"><i class="fa fa-eye"></i></a>
 						<a href="{{ route('admin.inbox.delete', ['id' => $list->id]) }}" class="btn btn-xs btn-danger" onclick="return confirm('Delete this data?')"><i class="fa fa-trash"></i></a>
 					</td>
 				</tr>

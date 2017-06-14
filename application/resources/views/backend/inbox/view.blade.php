@@ -46,6 +46,7 @@
 			<div class="form-group">
 				<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 					<a class="btn btn-primary" href="{{ route('admin.inbox') }}">Back</a>
+					<a href="{{ route('admin.inbox.delete', ['id' => $index->id]) }}" class="btn btn-danger" onclick="return confirm('Delete this data?')">Delete <i class="fa fa-trash"></i></a>
 				</div>
 			</div>
 

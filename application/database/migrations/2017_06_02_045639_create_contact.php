@@ -19,6 +19,7 @@ class CreateContact extends Migration
             $table->string('phone')->nullable();
             $table->string('email');
             $table->text('messages');
+            $table->boolean('read')->default(0);
             $table->integer('actor')->default(0);
             $table->boolean('flag_publish')->default(1);
             $table->timestamps();

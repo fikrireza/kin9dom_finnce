@@ -46,6 +46,12 @@ class AppServiceProvider extends ServiceProvider
             view()->share('partner', $partner);
             view()->share('social', $social);
         }
+
+        if(Request::is('admin/*')){
+            // Notifikasi New Inbox
+            $getNotifInbox = App\Contact::where('read', 0)->orderBy('created_at', 'desc')->get();
+            view()->share('getNotifInbox', $getNotifInbox);
+        }
     }
 
     /**
