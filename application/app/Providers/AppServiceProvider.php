@@ -17,8 +17,6 @@ use App\Social;
 
 use App;
 use DB;
-use Route;
-use Request;
 
 class AppServiceProvider extends ServiceProvider
 {
