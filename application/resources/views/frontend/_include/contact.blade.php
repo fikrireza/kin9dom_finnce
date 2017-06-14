@@ -1,9 +1,3 @@
-@php
-    $website = App\Website::first();
-    $partner = App\Partner::all();
-    $social  = App\Social::all();
-@endphp
-
 <div class="container-fluid base-color" id="contact">
     <div class="container">
         <div class="row text-center">
@@ -24,11 +18,11 @@
                 <h5>
                     Office
                 </h5>
-                {!! $website->address !!}
-
+                @if($website != null){!! $website->address !!}@endif
                 <h5>
                     Phone
                 </h5>
+                @if($website != null)
                 {!! $website->phone !!}
                 <p>
                     <a href="{{ $website->google_map_url }}">
@@ -39,6 +33,7 @@
                         </img>
                     </a>
                 </p>
+                @endif
             </div>
             <div class="col-md-3 col-md-push-6">
                 <h5>

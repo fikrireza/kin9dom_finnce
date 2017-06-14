@@ -1,5 +1,6 @@
 @extends('frontend._layout')
 
+@if($meta != null)
 @section('meta')
 <meta property="og:title" content="{{ $meta->meta_title }}" />
 <meta property="og:description " content="{{ $meta->meta_description }}" />
@@ -8,6 +9,7 @@
 <meta property="og:url" content="{{ $meta->meta_url }}" />
 <meta property="og:image" content="{{ $meta->meta_image }}" />
 @endsection
+@endif
 
 @section('title')
 Gallery

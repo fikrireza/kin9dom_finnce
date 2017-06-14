@@ -1,5 +1,4 @@
 @php
-    $website     = App\Website::first();
     $navCategory = App\ArticleCategory::take(4)->orderBy('id', 'DESC')->orderBy('priority', 'DESC')->where('flag_publish', 1)->get();
     $navEvent = App\Event::take(4)->orderBy('date', 'DESC')->where('flag_publish', 1)->get();
 @endphp
@@ -27,7 +26,7 @@
         @yield('style')
         <link href="{!! asset('amadeo/css/main.min.css') !!}" rel="stylesheet" type="text/css"/>
         <title>
-            {{ $website->website }} - @yield('title')
+        @if($website != null) {{ $website->website }} @endif- @yield('title')
         </title>
     </head>
     <body>

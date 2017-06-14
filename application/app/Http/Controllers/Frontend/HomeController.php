@@ -19,8 +19,7 @@ use App\ArticleCategory;
 class HomeController extends Controller
 {
     //
-    public function index()
-    {
+    public function index(){
         $meta         = Meta::where('for', 'home')->first();
         $content      = Content::all();
         $imageContent = ImageContent::all();
@@ -30,8 +29,7 @@ class HomeController extends Controller
     	return view('frontend.index')->with(compact('meta','content','imageContent','event','article'));
     }
 
-    public function about()
-    {
+    public function about(){
         $meta         = Meta::where('for', 'about')->first();
         $content      = Content::all();
         $imageContent = ImageContent::all();
@@ -39,8 +37,7 @@ class HomeController extends Controller
     	return view('frontend.about.index')->with(compact('meta','content','imageContent'));
     }
 
-    public function event()
-    {
+    public function event(){
         $meta         = Meta::where('for', 'article')->first();
         $content      = Content::all();
         $imageContent = ImageContent::all();
@@ -49,18 +46,19 @@ class HomeController extends Controller
     	return view('frontend.event.index')->with(compact('meta','content','imageContent','event'));
     }
 
-    public function eventMore($page = 1)
-    {
+    public function eventMore($page = 1){
         $event = Event::orderBy('date', 'DESC')->where('flag_publish', 1)->skip(($page - 1) * 6)->take(6)->get();
 
         return view('frontend.event.more')->with(compact('event'));
     }
     
-    public function eventDetail($slug)
-    {
+    public function eventDetail($slug){
         $content      = Content::all();
         $imageContent = ImageContent::all();
         $event        = Event::where('slug', $slug)->where('flag_publish', 1)->first();
+        if($event == null){
+            return view('frontend.errors.404');
+        }
         $eventImage   = EventImage::where('id_event', $event->id)->where('flag_publish', 1)->orderBy('id', 'DESC')->orderBy('priority', 'DESC')->get();
 
     	return view('frontend.event.detail')->with(compact('content','imageContent','event','eventImage'));

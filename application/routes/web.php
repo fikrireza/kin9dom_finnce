@@ -11,26 +11,41 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')
+	->name('home');
 
-Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/about', 'HomeController@about')
+	->name('about');
 
-Route::get('/event', 'HomeController@event')->name('event');
-Route::get('/event/{slug}', 'HomeController@eventDetail')->name('event.detail');
-Route::get('/eventMore/{page?}', 'HomeController@eventMore')->name('event.more');
+Route::get('/event', 'HomeController@event')
+	->name('event');
+Route::get('/event/{slug}', 'HomeController@eventDetail')
+	->name('event.detail');
+Route::get('/eventMore/{page?}', 'HomeController@eventMore')
+	->name('event.more');
 
-Route::get('/gallery', 'HomeController@gallery')->name('gallery');
-Route::get('/gallery/{slug}', 'HomeController@galleryDetail')->name('gallery.detail');
-Route::get('/galleryMore/{page?}', 'HomeController@galleryMore')->name('gallery.more');
+Route::get('/gallery', 'HomeController@gallery')
+	->name('gallery');
+Route::get('/gallery/{slug}', 'HomeController@galleryDetail')
+	->name('gallery.detail');
+Route::get('/galleryMore/{page?}', 'HomeController@galleryMore')
+	->name('gallery.more');
 
-Route::get('/article', 'HomeController@article')->name('article');
-Route::get('/article/{category}', 'HomeController@articleCategory')->name('article.category');
-Route::get('/articleMore/{page?}', 'HomeController@articleMore')->name('article.more');
-Route::get('/article/{category}/{slug}', 'HomeController@articleDetail')->name('article.detail');
-Route::get('/articleMore/{category}/{page?}', 'HomeController@articleCategoryMore')->name('article.category.more');
+Route::get('/article', 'HomeController@article')
+	->name('article');
+Route::get('/article/{category}', 'HomeController@articleCategory')
+	->name('article.category');
+Route::get('/articleMore/{page?}', 'HomeController@articleMore')
+	->name('article.more');
+Route::get('/article/{category}/{slug}', 'HomeController@articleDetail')
+	->name('article.detail');
+Route::get('/articleMore/{category}/{page?}', 'HomeController@articleCategoryMore')
+	->name('article.category.more');
 
-Route::post('/contact/store', 'Backend\InboxController@store')->name('contact.store');
-Route::get('/contact/success', 'HomeController@success')->name('contact.success');
+Route::post('/contact/store', 'Backend\InboxController@store')
+	->name('contact.store');
+Route::get('/contact/success', 'HomeController@success')
+	->name('contact.success');
 
 Route::get('/admin', 'Backend\AuthController@showLogin')->name('admin');
 Route::post('/admin', 'Backend\AuthController@login')->name('admin.login');
