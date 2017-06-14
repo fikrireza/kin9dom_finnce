@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-@php
-    $navCategory = App\ArticleCategory::take(4)->orderBy('id', 'DESC')->orderBy('priority', 'DESC')->where('flag_publish', 1)->get();
-    $navEvent = App\Event::take(4)->orderBy('date', 'DESC')->where('flag_publish', 1)->get();
-@endphp
-
-=======
->>>>>>> 72b956c10b75323e6f187b8f1aba5e9bb406a125
 <!DOCTYPE html>
 <html>
     <head>

@@ -18,7 +18,6 @@
                 <h5>
                     Office
                 </h5>
-<<<<<<< HEAD
                 @if($website != null){!! $website->address !!}@endif
                 <h5>
                     Phone
@@ -26,7 +25,6 @@
                 @if($website != null)
                 {!! $website->phone !!}
                 <p>
-=======
                 {!! isset($website->address) ? $website->address : '' !!}
 
                 <h5>
@@ -34,7 +32,6 @@
                 </h5>
                 {!! isset($website->address) ? $website->phone : '' !!}
                 <!-- <p>
->>>>>>> 72b956c10b75323e6f187b8f1aba5e9bb406a125
                     <a href="{{ $website->google_map_url }}">
                         <img src="{!! asset('amadeo/img/direction-img.png') !!}" style="height: 65px;">
                             <span style="font-size: 20px; font-weight: bold; font-family: 'Helvetica LT Std">
@@ -42,12 +39,9 @@
                             </span>
                         </img>
                     </a>
-<<<<<<< HEAD
                 </p>
-                @endif
-=======
                 </p> -->
->>>>>>> 72b956c10b75323e6f187b8f1aba5e9bb406a125
+                @endif
             </div>
             <div class="col-md-3 col-md-push-6">
                 <h5>
