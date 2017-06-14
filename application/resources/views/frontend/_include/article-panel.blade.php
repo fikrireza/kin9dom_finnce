@@ -1,7 +1,3 @@
-@php
-    $category = App\ArticleCategory::where('flag_publish', 1)->orderBy('id', 'DESC')->orderBy('priority', 'DESC')->get();
-@endphp
-
 <div class="container-fluid">
     <div class="row">
         @foreach($category as $list)
