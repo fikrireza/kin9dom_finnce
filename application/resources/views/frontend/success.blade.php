@@ -1,12 +1,11 @@
-<<<<<<< HEAD
 @php
+    $website     = App\Website::first();
     $navCategory = App\ArticleCategory::take(4)->orderBy('id', 'DESC')->orderBy('priority', 'DESC')->where('flag_publish', 1)->get();
     $navEvent = App\Event::take(4)->orderBy('date', 'DESC')->where('flag_publish', 1)->get();
 @endphp
 
-=======
->>>>>>> 72b956c10b75323e6f187b8f1aba5e9bb406a125
 <!DOCTYPE html>
+@yield('php')
 <html>
     <head>
         <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -28,7 +27,7 @@
         @yield('style')
         <link href="{!! asset('amadeo/css/main.css') !!}" rel="stylesheet" type="text/css"/>
         <title>
-        @if($website != null) {{ $website->website }} @endif- @yield('title')
+            {{ $website->website }} - @yield('title')
         </title>
     </head>
     <body>
@@ -105,11 +104,17 @@
                 </li>
             </ul>
         </nav>
-        @yield('content')
+        
+        <div style="height: 700px; padding-top: 70px;">
+        	<p>
+	        	Thank You
+	        </p>
+        </div>
+        
 
-		@include('frontend._include.contact')
+		
         <div class="container-fluid text-center base-color-darkest" id="footer">
-            © Copyright 2017 All Rights Reserved | Developer By &nbsp; <a href="https://amadeo.id"><img src="{{ asset('amadeo/img/amadeo.png') }}" height="25" /></a>
+            © Copyright 2017 All Rights Reserved
         </div>
     </body>
 </html>

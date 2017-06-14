@@ -135,4 +135,9 @@ class HomeController extends Controller
 
         return view('frontend.article.detail')->with(compact('content','imageContent','categoryI','article'));
     }
+
+    public function success()
+    {
+        return view('frontend.success');
+    }
 }

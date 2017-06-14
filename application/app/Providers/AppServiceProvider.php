@@ -15,6 +15,11 @@ use App\Website;
 use App\Partner;
 use App\Social;
 
+use App;
+use DB;
+use Route;
+use Request;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -31,15 +36,28 @@ class AppServiceProvider extends ServiceProvider
         });
 
         if(!Request::is('admin/*')){
+            // For Name Website
+            $website = App\Website::first();
 
-            $website    = Website::first();
+            // For Navbar
+            $navCategory = App\ArticleCategory::take(4)->orderBy('id', 'DESC')->orderBy('priority', 'DESC')->where('flag_publish', 1)->get();
+            $navEvent = App\Event::take(4)->orderBy('date', 'DESC')->where('flag_publish', 1)->get();
+
+            // For Footer
+            $partner = App\Partner::where('flag_publish', 1)->get();
+            $social  = App\Social::where('flag_publish', 1)->get();
+
             view()->share('website', $website);
-
-            $partner = Partner::all();
+            view()->share('navCategory', $navCategory);
+            view()->share('navEvent', $navEvent);
             view()->share('partner', $partner);
-
-            $social  = Social::all();
             view()->share('social', $social);
+        }
+
+        if(Request::is('admin/*')){
+            // Notifikasi New Inbox
+            $getNotifInbox = App\Contact::where('read', 0)->orderBy('created_at', 'desc')->get();
+            view()->share('getNotifInbox', $getNotifInbox);
         }
     }
 

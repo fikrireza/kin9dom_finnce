@@ -63,6 +63,7 @@ class SocialController extends Controller
 
         $index->save();
 
+        Session::flash('success', 'Data Has Been Added');
     	return redirect()->route('admin.social');
     }
 
@@ -105,6 +106,7 @@ class SocialController extends Controller
 
         $index->save();
         
+        Session::flash('success', 'Data Has Been Updated');
     	return redirect()->route('admin.social');
     }
 
@@ -112,24 +114,51 @@ class SocialController extends Controller
     {
     	Social::destroy($id);
 
+        Session::flash('success', 'Data Has Been Deleted');
     	return redirect()->route('admin.social');
     }
 
     public function action(Request $request)
     {
-    	if($request->action == 'delete')
-    	{
-    		Social::destroy($request->id);
-    	}
-    	else if($request->action == 'enable')
-    	{
-    		$index = Social::whereIn('id', $request->id)->update(['flag_publish' => 1]);
-    	}
-    	else if($request->action == 'disable')
-    	{
-    		$index = Social::whereIn('id', $request->id)->update(['flag_publish' => 0]);
-    	}
+        if(isset($request->id))
+        {
+        	if($request->action == 'delete')
+        	{
+        		Social::destroy($request->id);
+                Session::flash('success', 'Data Selected Has Been Deleted');
+        	}
+        	else if($request->action == 'enable')
+        	{
+        		$index = Social::whereIn('id', $request->id)->update(['flag_publish' => 1]);
+                Session::flash('success', 'Data Selected Has Been Enabled');
+        	}
+        	else if($request->action == 'disable')
+        	{
+        		$index = Social::whereIn('id', $request->id)->update(['flag_publish' => 0]);
+                Session::flash('success', 'Data Selected Has Been Disabled');
+        	}
+        }
     	
     	return redirect()->route('admin.social');
+    }
+
+    public function publish($id, $action)
+    {
+        $index = Social::find($id);
+
+        $index->flag_publish = $action;
+
+        $index->save();
+
+        if($action == 1)
+        {
+            Session::flash('success', 'Data Has Been Enabled');
+        }
+        else
+        {
+            Session::flash('success', 'Data Has Been Disabled');
+        }
+
+        return redirect()->route('admin.social');
     }
 }

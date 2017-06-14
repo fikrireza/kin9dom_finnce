@@ -6,7 +6,7 @@
 <meta property="og:type" content="website" />
 <meta name="keywords" content="{{ $article->meta_keyword }}">
 <meta property="og:url" content="{{ $article->meta_url }}" />
-<meta property="og:image" content="{{ $article->meta_image }}" />
+<meta property="og:image" content="{{ asset($article->meta_image) }}" />
 @endsection
 
 @section('title')
@@ -80,8 +80,8 @@
 	<div class="container">
 		<ol class="breadcrumb2 margin-zero">
 			<li><a href="{!! route('home') !!}">Home</a></li>
-			<li><a href="{!! route('article') !!}">Home</a></li>
-			<li><a href="{!! route('article.category', ['category', 'special']) !!}">{!! $categoryI->name !!}</a></li>
+			<li><a href="{!! route('article') !!}">Article</a></li>
+			<li><a href="{!! route('article.category', ['category' => $categoryI->slug]) !!}">{!! $categoryI->name !!}</a></li>
 			<li class="active">{!! $article->name !!}</li>          
 		</ol>
 	</div>                 

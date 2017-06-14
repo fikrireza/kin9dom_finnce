@@ -31,6 +31,9 @@ class InboxController extends Controller
     {
     	$index = Contact::find($id);
 
+        $index->read = 1;
+        $index->save();
+
     	return view('backend.inbox.view')->with(compact('index'));
     }
 
@@ -45,20 +48,39 @@ class InboxController extends Controller
 
         $index->save();
 
-    	return redirect()->route('contact.success');
+    	Session::flash('success', 'Thank You');
+        return redirect::back();
     }
 
     public function delete($id)
     {
     	Contact::destroy($id);
 
+        Session::flash('success', 'Data Has Been Deleted');
     	return redirect()->route('admin.inbox');
     }
 
     public function action(Request $request)
     {
-   		Contact::destroy($request->id);
-    	
+        if(isset($request->id))
+        {
+            if($request->action == 'delete')
+            {
+                Contact::destroy($request->id);
+                Session::flash('success', 'Data Selected Has Been Deleted');
+            }
+            else if($request->action == 'read')
+            {
+                $index = Contact::whereIn('id', $request->id)->update(['read' => 1]);
+                Session::flash('success', 'Data Selected Has Been Set as Readed');
+            }
+            else if($request->action == 'unread')
+            {
+                $index = Contact::whereIn('id', $request->id)->update(['read' => 0]);
+                Session::flash('success', 'Data Selected Has Been Set as Unread');
+            }
+        }
+
     	return redirect()->route('admin.inbox');
     }
 }

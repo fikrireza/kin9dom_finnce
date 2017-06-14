@@ -2,12 +2,12 @@
 
 @if($meta != null)
 @section('meta')
-<meta property="og:title" content="{{ $meta->meta_title }}" />
-<meta property="og:description " content="{{ $meta->meta_description }}" />
+<meta property="og:title" content="{{ isset($meta->meta_title) == true ? $meta->meta_title : '' }}" />
+<meta property="og:description " content="{{ isset($meta->meta_description) == true ? $meta->meta_description : '' }}" />
 <meta property="og:type" content="website" />
-<meta name="keywords" content="{{ $meta->meta_keyword }}">
-<meta property="og:url" content="{{ $meta->meta_url }}" />
-<meta property="og:image" content="{{ $meta->meta_image }}" />
+<meta name="keywords" content="{{ isset($meta->meta_keyword) == true ? $meta->meta_keyword : '' }}">
+<meta property="og:url" content="{{ isset($meta->meta_url) == true ? $meta->meta_url : '' }}" />
+<meta property="og:image" content="{{ isset($meta->meta_image) == true ? asset($meta->meta_image) : '' }}" />
 @endsection
 @endif
 

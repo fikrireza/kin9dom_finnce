@@ -18,7 +18,43 @@
             <li><a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
           </ul>
         </li>
+        @if ($getNotifInbox)
+        <li role="presentation" class="dropdown">
+          <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-envelope-o"></i>
+            @if($getNotifInbox->count())<span class="badge bg-green">{{ $getNotifInbox->count() }}</span>@endif
+          </a>
+          <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+            @foreach ($getNotifInbox as $key)
+            <li>
+              <a href="{{ route('admin.inbox.view', ['id' => $key->id]) }}">
+                <span>
+                  <span>{{ $key->name }}</span>
+                  @php
+                  Carbon\Carbon::setLocale('en');
+                  @endphp
+                  <span class="time">{{ $key->created_at->diffForHumans() }}</span>
+                </span>
+                <span class="message">
+                  {{ $key->messages }}
+                </span>
+              </a>
+            </li>
+            @endforeach
+            <li>
+              <div class="text-center">
+                <a href="{{ route('admin.inbox') }}">
+                  <strong>View All</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </li>
+        @endif
       </ul>
+
+
     </nav>
   </div>
 </div>

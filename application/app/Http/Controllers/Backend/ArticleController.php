@@ -98,6 +98,7 @@ class ArticleController extends Controller
 
         $index->save();
 
+        Session::flash('success', 'Data Has Been Added');
     	return redirect()->route('admin.article');
     }
 
@@ -189,32 +190,59 @@ class ArticleController extends Controller
 
         $index->save();
 
+        Session::flash('success', 'Data Has Been Updated');
     	return redirect()->route('admin.article');
     }
 
     public function delete($id)
     {
     	Article::destroy($id);
-
+        Session::flash('success', 'Data Has Been Deleted');
     	return redirect()->route('admin.article');
     }
 
     public function action(Request $request)
     {
-    	if($request->action == 'delete')
-    	{
-    		Article::destroy($request->id);
-    	}
-    	else if($request->action == 'enable')
-    	{
-    		$index = Article::whereIn('id', $request->id)->update(['flag_publish' => 1]);
-    	}
-    	else if($request->action == 'disable')
-    	{
-    		$index = Article::whereIn('id', $request->id)->update(['flag_publish' => 0]);
-    	}
+        if(isset($request->id))
+        {
+            if($request->action == 'delete')
+            {
+                Session::flash('success', 'Data Selected Has Been Deleted');
+                Article::destroy($request->id);
+            }
+            else if($request->action == 'enable')
+            {
+                Session::flash('success', 'Data Selected Has Been Enabled');
+                $index = Article::whereIn('id', $request->id)->update(['flag_publish' => 1]);
+            }
+            else if($request->action == 'disable')
+            {
+                Session::flash('success', 'Data Selected Has Been Disabled');
+                $index = Article::whereIn('id', $request->id)->update(['flag_publish' => 0]);
+            }
+        }
     	
     	return redirect()->route('admin.article');
+    }
+
+    public function publish($id, $action)
+    {
+        $index = Article::find($id);
+
+        $index->flag_publish = $action;
+
+        $index->save();
+
+        if($action == 1)
+        {
+            Session::flash('success', 'Data Has Been Enabled');
+        }
+        else
+        {
+            Session::flash('success', 'Data Has Been Disabled');
+        }
+
+        return redirect()->route('admin.article');
     }
 
     // Category function
@@ -301,6 +329,7 @@ class ArticleController extends Controller
 
         $index->save();
 
+        Session::flash('success', 'Data Has Been Added');
     	return redirect()->route('admin.article.category');
     }
 
@@ -414,13 +443,14 @@ class ArticleController extends Controller
 
         $index->save();
 
+        Session::flash('success', 'Data Has Been Updated');
     	return redirect()->route('admin.article.category');
     }
 
     public function deleteCategory($id)
     {
     	ArticleCategory::destroy($id);
-
+        Session::flash('success', 'Data Has Been Deleted');
     	return redirect()->route('admin.article.category');
     }
 
@@ -431,17 +461,40 @@ class ArticleController extends Controller
 	    	if($request->action == 'delete')
 	    	{
 	    		ArticleCategory::destroy($request->id);
+                Session::flash('success', 'Data Selected Has Been Deleted');
 	    	}
 	    	else if($request->action == 'enable')
 	    	{
 	    		$index = ArticleCategory::whereIn('id', $request->id)->update(['flag_publish' => 1]);
+                Session::flash('success', 'Data Selected Has Been Enabled');
 	    	}
 	    	else if($request->action == 'disable')
 	    	{
 	    		$index = ArticleCategory::whereIn('id', $request->id)->update(['flag_publish' => 0]);
+                Session::flash('success', 'Data Selected Has Been Disabled');
 	    	}
 	    }
     	
     	return redirect()->route('admin.article.category');
+    }
+
+    public function publishCategory($id, $action)
+    {
+        $index = ArticleCategory::find($id);
+
+        $index->flag_publish = $action;
+
+        $index->save();
+
+        if($action == 1)
+        {
+            Session::flash('success', 'Data Has Been Enabled');
+        }
+        else
+        {
+            Session::flash('success', 'Data Has Been Disabled');
+        }
+
+        return redirect()->route('admin.article.category');
     }
 }

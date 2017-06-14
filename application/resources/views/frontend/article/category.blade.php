@@ -6,7 +6,7 @@
 <meta property="og:type" content="website" />
 <meta name="keywords" content="{{ $categoryI->meta_keyword }}">
 <meta property="og:url" content="{{ $categoryI->meta_url }}" />
-<meta property="og:image" content="{{ $categoryI->meta_image }}" />
+<meta property="og:image" content="{{ asset($categoryI->meta_image) }}" />
 @endsection
 
 @section('title')

@@ -2,12 +2,12 @@
 
 @if($meta != null)
 @section('meta')
-<meta property="og:title" content="{{ $meta->meta_title }}" />
-<meta property="og:description " content="{{ $meta->meta_description }}" />
+<meta property="og:title" content="{{ isset($meta->meta_title) == true ? $meta->meta_title : '' }}" />
+<meta property="og:description " content="{{ isset($meta->meta_description) == true ? $meta->meta_description : '' }}" />
 <meta property="og:type" content="website" />
-<meta name="keywords" content="{{ $meta->meta_keyword }}">
-<meta property="og:url" content="{{ $meta->meta_url }}" />
-<meta property="og:image" content="{{ $meta->meta_image }}" />
+<meta name="keywords" content="{{ isset($meta->meta_keyword) == true ? $meta->meta_keyword : '' }}">
+<meta property="og:url" content="{{ isset($meta->meta_url) == true ? $meta->meta_url : '' }}" />
+<meta property="og:image" content="{{ isset($meta->meta_image) == true ? asset($meta->meta_image) : '' }}" />
 @endsection
 @endif
 
@@ -47,7 +47,7 @@ Gallery
 
 	.gallery-album
 	{
-	    width: 375px;
+	    width: 100%;
         height: 290px;
 	    margin-bottom: 10px;
 	}
@@ -83,6 +83,7 @@ Gallery
 		font-family: 'Helvetica LT Std';
 	    transform: translateY(55px);
 	    font-weight: 900;
+	    padding: 0px 20px;
 	}
 
 	.gallery-info > .date
@@ -102,9 +103,10 @@ Gallery
 		font-size: 23px;
 		width: 100%;
 		transform: translateY(40px);
-	    padding: 0px 40px;
+	    padding: 0px 20px;
 	    line-height: 18px;
 	    opacity: 1;
+	    display: none;
 	}
 
 	.gallery-info > .view-more
@@ -132,6 +134,11 @@ Gallery
 		{
 			min-height: 50%;
 			position: relative;
+		}
+
+		.gallery-album
+		{
+			width: 375px;
 		}
 
 		.gallery-content
@@ -211,6 +218,7 @@ Gallery
 		    padding: 0px 40px;
 		    line-height: 18px;
 		    opacity: 0;
+		    display: inherit;
 		    transition: all 1s;
 		}
 

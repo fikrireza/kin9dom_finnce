@@ -23,6 +23,7 @@
 
 				<!-- page content -->
 				<div class="right_col" role="main">
+				@include('backend.includes.messages')
 				@yield('content')
 				</div>
 
